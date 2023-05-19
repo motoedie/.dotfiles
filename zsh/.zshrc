@@ -14,6 +14,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias cat='bat'
 alias fd='fd --hidden'
+alias lg='lazygit'
 alias ls='exa --icons --color=always -1 -a'
 alias lst='exa --icons --color=always -1 -a -T -L=2'
 alias nv="nvim"
