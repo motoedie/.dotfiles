@@ -42,8 +42,6 @@ alias pkgr='sudo apt-get remove'
 alias gg='() {git log --all -i --grep=$1 | fzf}'
 alias g_file_history='() {git log --oneline $1 | fzf --height="80%" --preview="git show {1} -- $1 | delta"}'
 
-[ -s "/Users/ladislav.starek/.scm_breeze/scm_breeze.sh" ] && source "/Users/ladislav.starek/.scm_breeze/scm_breeze.sh"
-
 # DIRCOLORS (MacOS)
 export CLICOLOR=1
 
@@ -61,3 +59,4 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
