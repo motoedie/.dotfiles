@@ -39,7 +39,7 @@ alias pkgi='sudo apt-get install'
 alias pkgs='apt-cache search'
 alias pkgr='sudo apt-get remove'
 
-alias gg='() {git log --all -i --grep=$1 | fzf}'
+alias g_history='() {git log --oneline | fzf --height="80%" --preview="git show {1} -- $1 | delta"}'
 alias g_file_history='() {git log --oneline $1 | fzf --height="80%" --preview="git show {1} -- $1 | delta"}'
 
 # DIRCOLORS (MacOS)
