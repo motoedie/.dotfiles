@@ -18,6 +18,7 @@ nix-env -iA nixpkgs.fd
 nix-env -iA nixpkgs.exa
 nix-env -iA nixpkgs.delta
 nix-env -iA nixpkgs.go
+nix-env -iA nixpkgs.unzip
 
 #install scm-breeze
 git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
