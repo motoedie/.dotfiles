@@ -40,7 +40,7 @@ alias pkgs='apt-cache search'
 alias pkgr='sudo apt-get remove'
 
 alias g_history='() {git log --oneline | fzf --height="80%" --preview="git show {1} -- $1 | delta"}'
-alias g_file_history='() {git log --oneline $1 | fzf --height="80%" --preview="git show {1} -- $1 | delta"}'
+alias g_file_history='() {git log --oneline $1 | fzf --height="80%" --preview="git show --follow {1} -- $1 | delta"}'
 
 # DIRCOLORS (MacOS)
 export CLICOLOR=1
