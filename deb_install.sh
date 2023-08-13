@@ -25,6 +25,7 @@ git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
 ~/.scm_breeze/install.sh
 
 # stow dotfiles
+stow editor
 stow git
 stow p10k
 stow skhd
