@@ -12,7 +12,8 @@ nix-env -iA nixpkgs.nerdfonts
 asdf plugin add lazygit
 asdf install lazygit latest
 nix-env -iA nixpkgs.stow
-nix-env -iA nixpkgs.ripgrep
+asdf plugin add ripgrep
+asdf plugin install ripgrep latest
 asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git
 asdf plugin install fzf latest
 nix-env -iA nixpkgs.bat
@@ -22,6 +23,7 @@ nix-env -iA nixpkgs.delta
 nix-env -iA nixpkgs.go
 nix-env -iA nixpkgs.unzip
 nix-env -iA nixpkgs.xsel
+asdf install
 
 #install scm-breeze
 git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
