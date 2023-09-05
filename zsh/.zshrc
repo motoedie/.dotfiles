@@ -60,3 +60,5 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
+. "$HOME/.asdf/asdf.sh"
