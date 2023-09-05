@@ -34,6 +34,7 @@ alias srestart='sudo systemctl restart'
 alias sstart='sudo systemctl start'
 alias sstop='sudo systemctl stop'
 alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim stable'
+alias update-asdf-plugins='asdf plugin update --all'
 
 # System (Debian/Ubuntu specific)
 alias pkgi='sudo apt-get install'
