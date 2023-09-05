@@ -38,9 +38,8 @@ stow zsh
 source "${ZDOTDIR:-$HOME}/.zshrc"
 
 # install Neovim
-wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-tar xzvf nvim-linux64.tar.gz
-mv nvim-linux64 ~/.local/share/nvim-linux64
+asdf plugin add neovim
+asdf install neovim stable
 cd /usr/local/bin
 sudo ln -sf ~/.local/share/nvim-linux64/bin/nvim nvim
 
