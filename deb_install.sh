@@ -13,17 +13,20 @@ asdf plugin add lazygit
 asdf install lazygit latest
 nix-env -iA nixpkgs.stow
 asdf plugin add ripgrep
-asdf plugin install ripgrep latest
+asdf install ripgrep latest
 asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git
-asdf plugin install fzf latest
-nix-env -iA nixpkgs.bat
-nix-env -iA nixpkgs.fd
-nix-env -iA nixpkgs.exa
-nix-env -iA nixpkgs.delta
+asdf install fzf latest
+asdf plugin add bat
+asdf install bat latest
+asdf plugin add fd
+asdf install fd latest
+asdf plugin add exa
+asdf install exa latest
+asdf plugin add delta
+asdf install delta latest
 nix-env -iA nixpkgs.go
 nix-env -iA nixpkgs.unzip
 nix-env -iA nixpkgs.xsel
-asdf install
 
 #install scm-breeze
 git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
