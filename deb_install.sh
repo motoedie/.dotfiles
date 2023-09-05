@@ -9,7 +9,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
 # install packages
 nix-env -iA nixpkgs.nerdfonts
-nix-env -iA nixpkgs.lazygit
+asdf plugin add lazygit
+asdf install lazygit latest
 nix-env -iA nixpkgs.stow
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.fzf
