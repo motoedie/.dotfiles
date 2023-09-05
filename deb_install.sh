@@ -14,6 +14,7 @@ asdf install lazygit latest
 nix-env -iA nixpkgs.stow
 nix-env -iA nixpkgs.ripgrep
 asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git
+asdf plugin install fzf latest
 nix-env -iA nixpkgs.bat
 nix-env -iA nixpkgs.fd
 nix-env -iA nixpkgs.exa
