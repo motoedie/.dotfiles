@@ -63,4 +63,6 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
-. "$HOME/.asdf/asdf.sh"
+if [[ -e "$HOME/.asdf" ]]; then
+  . "$HOME/.asdf/asdf.sh"
+fi
