@@ -58,5 +58,4 @@ sudo ln -sf ~/.local/share/nvim-linux64/bin/nvim nvim
 
 # install astronvim
 rm -rf ~/.config/nvim
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-git clone https://github.com/motoedie/astronvim-user ~/.config/astronvim
+git clone https://github.com/motoedie/astronvimv4 ~/.config/nvim
