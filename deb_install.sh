@@ -33,7 +33,6 @@ stow editor
 stow git
 stow p10k
 stow skhd
-stow tmux
 stow yabai
 stow zsh
 
