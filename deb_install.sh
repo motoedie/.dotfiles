@@ -1,18 +1,10 @@
-# install nix
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-
-# source nix
-. ~/.nix-profile/etc/profile.d/nix.sh
-
 # powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
 # install packages
-nix-env -iA nixpkgs.nerdfonts
 asdf plugin add lazygit
 asdf install lazygit latest
 asdf global lazygit latest
-nix-env -iA nixpkgs.stow
 asdf plugin add ripgrep
 asdf install ripgrep latest
 asdf global lazygit latest
@@ -31,9 +23,6 @@ asdf global exa latest
 asdf plugin add delta
 asdf install delta latest
 asdf global delta latest
-nix-env -iA nixpkgs.go
-nix-env -iA nixpkgs.unzip
-nix-env -iA nixpkgs.xsel
 
 #install scm-breeze
 git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
