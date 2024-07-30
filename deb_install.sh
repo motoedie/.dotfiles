@@ -31,10 +31,12 @@ git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
 
 # stow dotfiles
 stow editor
+[ -f ~/.gitconfig ] && rm ~/.gitconfig
 stow git
 stow p10k
 stow skhd
 stow yabai
+[ -f ~/.zshrc ] && rm ~/.zshrc
 stow zsh
 
 source "${ZDOTDIR:-$HOME}/.zshrc"
