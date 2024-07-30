@@ -7,6 +7,7 @@ asdf install lazygit latest
 asdf global lazygit latest
 asdf plugin add ripgrep
 asdf install ripgrep latest
+asdf global ripgrep latest
 asdf global lazygit latest
 asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git
 asdf install fzf latest
