@@ -18,9 +18,9 @@ asdf global bat latest
 asdf plugin add fd
 asdf install fd latest
 asdf global fd latest
-asdf plugin add exa
-asdf install exa latest
-asdf global exa latest
+asdf plugin add eza
+asdf install eza latest
+asdf global eza latest
 asdf plugin add delta
 asdf install delta latest
 asdf global delta latest
