@@ -47,6 +47,10 @@ alias g_file_history='() {git log --oneline $1 | fzf --height="80%" --preview="g
 # DIRCOLORS (MacOS)
 export CLICOLOR=1
 
+# LANGUAGE
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
 # FZF
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
