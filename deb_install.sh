@@ -24,6 +24,9 @@ asdf global eza latest
 asdf plugin add delta
 asdf install delta latest
 asdf global delta latest
+asdf plugin add bat-extras
+asdf install bat-extras latest
+asdf global bat-extras latest
 
 #install scm-breeze
 git clone https://github.com/scmbreeze/scm_breeze.git ~/.scm_breeze
