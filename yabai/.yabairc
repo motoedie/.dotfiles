@@ -54,4 +54,5 @@ yabai -m rule --add app="^Tunnelblick" manage=off
 yabai -m rule --add app="^Configurations" manage=off
 yabai -m rule --add app="^Finder" manage=off
 yabai -m rule --add app="^Archive Utility" manage=off
-
+yabai -m rule --add app="^Microsoft Defender" manage=off
+yabai -m rule --add app="^Calendar" manage=off
