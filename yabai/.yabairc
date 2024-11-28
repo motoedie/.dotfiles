@@ -56,3 +56,4 @@ yabai -m rule --add app="^Finder" manage=off
 yabai -m rule --add app="^Archive Utility" manage=off
 yabai -m rule --add app="^Microsoft Defender" manage=off
 yabai -m rule --add app="^Calendar" manage=off
+yabai -m rule --add app="^Messages" manage=off
