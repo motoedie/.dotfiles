@@ -9,6 +9,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(git)
+plugins=(asdf)
 
 source $ZSH/oh-my-zsh.sh
 
