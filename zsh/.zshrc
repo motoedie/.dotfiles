@@ -28,6 +28,7 @@ alias nxrmty="yarn nx run-many --target=type --all"
 alias nxsf="yarn nx serve frontend"
 alias nxtef="yarn nx test frontend"
 alias nxtyf="yarn nx type frontend"
+alias nxsb="yarn nx serve backend"
 alias rg="rg --hidden"
 alias yi="yarn install"
 alias sstatus='sudo systemctl status'
