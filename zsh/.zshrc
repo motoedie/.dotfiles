@@ -75,7 +75,14 @@ if [[ -e "$HOME/.asdf" ]]; then
   . "$HOME/.asdf/asdf.sh"
 fi
 
+# Source NVM (if available)
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-source "$NVM_DIR/nvm.sh"
+if [ -d "$NVM_DIR" ]; then
+  if [[ -e "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
+    # For macOS with Homebrew
+    source "/opt/homebrew/opt/nvm/nvm.sh"
+  elif [[ -e "$NVM_DIR/nvm.sh" ]]; then
+    # For other platforms (e.g., Ubuntu/Debian)
+    source "$NVM_DIR/nvm.sh"
+  fi
+fi
