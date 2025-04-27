@@ -55,7 +55,6 @@ export LC_CTYPE=en_US.UTF-8
 
 # FZF
 # Setup fzf key bindings and fuzzy completion
-eval "$(fzf --zsh)"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
 # Add fzf commands to cli
