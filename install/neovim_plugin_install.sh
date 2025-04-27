@@ -1,4 +1,4 @@
-echo "Installing neovim"
+echo "\n\033[0;33mInstalling neovim\033[0m"
 asdf plugin add neovim
 asdf install neovim stable
 asdf global neovim stable

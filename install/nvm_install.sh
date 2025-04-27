@@ -1,5 +1,5 @@
 # Install NVM (Node Version Manager)
-echo "Installing NVM package..."
+echo "\n\033[0;33mInstalling NVM package\033[0m"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 # Ensure NVM is available in the current shell session

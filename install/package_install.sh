@@ -1,4 +1,5 @@
 echo "Installing asdf plugins"
+echo "\n\033[0;33mInstalling asdf plugins\033[0m"
 asdf plugin add lazygit
 asdf install lazygit latest
 asdf global lazygit latest

@@ -1,4 +1,4 @@
-echo "Stowing dotfiles"
+echo "\n\033[0;33mStowing dotfiles\033[0m"
 sudo apt install stow build-essential
 
 # Move to the dotfiles root directory
