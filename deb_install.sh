@@ -58,7 +58,7 @@ sudo ln -sf ~/.local/share/nvim-linux64/bin/nvim nvim
 
 # install astronvim
 rm -rf ~/.config/nvim
-git clone https://github.com/motoedie/astronvimv4 ~/.config/nvim
+git clone https://github.com/motoedie/astronvimv5 ~/.config/nvim
 
 # Install NVM (Node Version Manager)
 echo "Installing NVM..."
