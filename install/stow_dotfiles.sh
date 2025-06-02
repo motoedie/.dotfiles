@@ -13,3 +13,5 @@ stow skhd
 stow yabai
 [ -f ~/.zshrc ] && rm ~/.zshrc
 stow zsh
+[ -f ~/.config/lazygit/config.yml ] && rm ~/.config/lazygit/config.yml
+stow lazygit

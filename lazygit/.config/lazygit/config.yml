@@ -1,0 +1,2 @@
+os:
+  copyToClipboardCmd: "printf '\\033Ptmux;\\033\\033]52;c;%s\\a\\033\\\\' \"$(echo {{text}} | base64)\" > /dev/tty"
