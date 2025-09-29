@@ -9,7 +9,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Install Node versions
 nvm install 18.17.1
-nvm install 20
+nvm install 22
 
 # Set Node 18.17.1 as default
 nvm alias default 18.17.1

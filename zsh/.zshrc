@@ -18,7 +18,7 @@ alias fd='fd --hidden'
 alias lg='lazygit'
 alias ls='eza --icons --color=always -1 -a'
 alias lst='eza --icons --color=always -1 -a -T -L=2'
-alias nv="nvm use 20 && nvim"
+alias nv="nvm use 22 && nvim"
 alias nxef="yarn nx eslint frontend"
 alias nxlf="yarn nx lint frontend"
 alias nxr="yarn nx reset"
