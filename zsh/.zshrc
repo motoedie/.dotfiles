@@ -18,7 +18,7 @@ alias fd='fd --hidden'
 alias lg='lazygit'
 alias ls='eza --icons --color=always -1 -a'
 alias lst='eza --icons --color=always -1 -a -T -L=2'
-alias nv="nvm use 22 && nvim"
+alias nv="nvim"
 alias nxef="yarn nx eslint frontend"
 alias nxlf="yarn nx lint frontend"
 alias nxr="yarn nx reset"
@@ -75,13 +75,13 @@ if [[ -e "$HOME/.asdf" ]]; then
 fi
 
 # Source NVM (if available)
-export NVM_DIR="$HOME/.nvm"
-if [ -d "$NVM_DIR" ]; then
-  if [[ -e "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
-    # For macOS with Homebrew
-    source "/opt/homebrew/opt/nvm/nvm.sh"
-  elif [[ -e "$NVM_DIR/nvm.sh" ]]; then
-    # For other platforms (e.g., Ubuntu/Debian)
-    source "$NVM_DIR/nvm.sh"
-  fi
-fi
+# export NVM_DIR="$HOME/.nvm"
+# if [ -d "$NVM_DIR" ]; then
+#   if [[ -e "/opt/homebrew/opt/nvm/nvm.sh" ]]; then
+#     # For macOS with Homebrew
+#     source "/opt/homebrew/opt/nvm/nvm.sh"
+#   elif [[ -e "$NVM_DIR/nvm.sh" ]]; then
+#     # For other platforms (e.g., Ubuntu/Debian)
+#     source "$NVM_DIR/nvm.sh"
+#   fi
+# fi

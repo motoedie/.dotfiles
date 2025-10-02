@@ -24,7 +24,7 @@ sh ./install/neovim_plugin_install.sh
 sh ./install/astronvim_install.sh
 
 # install nvm
-sh ./install/nvm_install.sh
+# sh ./install/nvm_install.sh
 
 # Source .zshrc to apply NVM configurations
 source "$HOME/.zshrc"
