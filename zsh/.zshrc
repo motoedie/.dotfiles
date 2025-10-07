@@ -74,6 +74,10 @@ if [[ -e "$HOME/.asdf" ]]; then
   . "$HOME/.asdf/asdf.sh"
 fi
 
+# Disable SCM Breeze git wrapper (keeps other features)
+# Prevent using SCM Breeze's git wrapper
+unset -f git
+
 # Source NVM (if available)
 # export NVM_DIR="$HOME/.nvm"
 # if [ -d "$NVM_DIR" ]; then
