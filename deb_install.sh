@@ -9,6 +9,9 @@ sh ./install/p10k_install.sh
 # install packages
 sh ./install/package_install.sh
 
+# install copilot CLI
+sh ./install/copilot_install.sh
+
 #install scm-breeze
 sh ./install/scm_breeze_install.sh
 
