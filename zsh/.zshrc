@@ -89,3 +89,5 @@ unset -f git
 #     source "$NVM_DIR/nvm.sh"
 #   fi
 # fi
+
+export PATH="$HOME/.local/bin:$PATH"
