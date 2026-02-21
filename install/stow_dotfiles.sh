@@ -8,6 +8,9 @@ cd "$(dirname "$0")/.."
 stow editor
 [ -f ~/.gitconfig ] && rm ~/.gitconfig
 stow git
+# stow ignores .gitignore by design; symlink it explicitly
+rm -f ~/.gitignore
+ln -s .dotfiles/git/.gitignore ~/.gitignore
 stow p10k
 stow skhd
 stow yabai
