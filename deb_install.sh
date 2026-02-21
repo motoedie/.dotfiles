@@ -12,6 +12,9 @@ sh ./install/package_install.sh
 # install Copilot CLI, Claude CLI, and other AI tools
 sh ./install/aitools_install.sh
 
+# symlink AI tool configs (commands, skills) into ~/.claude and ~/.cursor
+sh ./install/ai_config_install.sh
+
 #install scm-breeze
 sh ./install/scm_breeze_install.sh
 
