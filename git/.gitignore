@@ -2,3 +2,4 @@ node_modules
 db_dump
 .DS_Store
 .nx
+.claude/
