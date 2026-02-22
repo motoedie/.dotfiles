@@ -1,4 +1,1 @@
-Follow `Agents.md` at the repo root. Before changing files, check for any
-project-level `Agents.md` under `services/**` or `packages/**` and follow the
-precedence rules described there. If there is a conflict, defer to the
-project-level agent file.
+If an `Agents.md` file exists at the repo root, read and follow it before doing any work.
