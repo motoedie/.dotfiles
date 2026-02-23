@@ -9,7 +9,6 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(git)
-plugins=(asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,3 +90,5 @@ unset -f git
 # fi
 
 export PATH="$HOME/.local/bin:$PATH"
+
+[ -s "/home/autoboss/.scm_breeze/scm_breeze.sh" ] && source "/home/autoboss/.scm_breeze/scm_breeze.sh"

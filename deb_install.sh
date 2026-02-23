@@ -1,7 +1,10 @@
-#!/bin/zsh
+#!/bin/sh
 
-# install zsh
-sh ./install/zsh_install.sh
+if [ -z "$ZSH_VERSION" ]; then
+  # install zsh first, then re-exec this script under zsh
+  sh ./install/zsh_install.sh
+  exec zsh "$0" "$@"
+fi
 
 # powerlevel10k
 sh ./install/p10k_install.sh
@@ -21,7 +24,7 @@ sh ./install/scm_breeze_install.sh
 # stow dotfiles
 sh ./install/stow_dotfiles.sh
 
-source "${ZDOTDIR:-$HOME}/.zshrc"
+. "${ZDOTDIR:-$HOME}/.zshrc"
 
 # install Neovim
 sh ./install/neovim_plugin_install.sh
@@ -33,4 +36,4 @@ sh ./install/astronvim_install.sh
 # sh ./install/nvm_install.sh
 
 # Source .zshrc to apply NVM configurations
-source "$HOME/.zshrc"
+. "$HOME/.zshrc"
