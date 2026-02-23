@@ -9,6 +9,10 @@ fi
 # powerlevel10k
 sh ./install/p10k_install.sh
 
+# install Rust (required by some asdf plugins, e.g. bat)
+sh ./install/rust_install.sh
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
 # install packages
 sh ./install/package_install.sh
 
