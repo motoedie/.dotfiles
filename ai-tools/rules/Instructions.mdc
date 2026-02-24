@@ -1,0 +1,7 @@
+In all interactions, be concise and sacrifice grammer for the sake of concision.
+
+## Agents
+If an `Agents.md` file exists at the repo root, read and follow it before doing any work.
+
+## Plans
+At the end of each plan, give me a list of unresolved questions to answer, if any. Make the questions concise. Sacrifice grammar for the sake of concision.
