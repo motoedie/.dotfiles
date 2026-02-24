@@ -44,8 +44,10 @@ symlink_ai_file() {
 
 symlink_ai_dir  "commands"         "$HOME/.claude/commands"
 symlink_ai_dir  "skills"           "$HOME/.claude/skills"
+symlink_ai_dir  "agents"           "$HOME/.claude/agents"
 symlink_ai_dir  "commands"         "$HOME/.cursor/commands"
 symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
+symlink_ai_dir  "agents"           "$HOME/.cursor/agents"
 
 mkdir -p "$HOME/.claude/rules"
 symlink_ai_file "rules/CLAUDE.md"  "$HOME/.claude/rules/CLAUDE.md"
