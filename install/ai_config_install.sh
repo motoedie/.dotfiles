@@ -49,6 +49,8 @@ symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
 
 mkdir -p "$HOME/.claude/rules"
 symlink_ai_file "rules/agents.md"  "$HOME/.claude/rules/agents.md"
+symlink_ai_file "rules/plans.md"  "$HOME/.claude/rules/plans.md"
 
 mkdir -p "$HOME/.cursor/rules"
 symlink_ai_file "rules/agents.mdc" "$HOME/.cursor/rules/agents.mdc"
+symlink_ai_file "rules/plans.mdc" "$HOME/.cursor/rules/plans.mdc"
