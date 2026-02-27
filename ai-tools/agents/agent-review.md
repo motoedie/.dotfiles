@@ -1,5 +1,5 @@
 ---
-name: test-coverage-review
+name: agent-review
 description: Use this agent to review test coverage for changed code. Invoke after writing or modifying code to check if new branches, device types, or logic paths are adequately tested.
 model: sonnet
 ---
