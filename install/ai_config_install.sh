@@ -48,7 +48,7 @@ symlink_ai_dir  "agents"           "$HOME/.claude/agents"
 symlink_ai_dir  "commands"         "$HOME/.cursor/commands"
 symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
 symlink_ai_dir  "agents"           "$HOME/.cursor/agents"
-symlink_ai_dir  "commands"         "$HOME/.codex/commands"
+symlink_ai_dir  "commands"         "$HOME/.codex/prompts"
 symlink_ai_dir  "skills"           "$HOME/.codex/skills"
 symlink_ai_dir  "agents"           "$HOME/.codex/agents"
 
