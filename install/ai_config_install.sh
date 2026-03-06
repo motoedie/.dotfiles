@@ -57,23 +57,26 @@ migrate_all_plans() {
 [ ! -d "$HOME/.claude" ] && mkdir "$HOME/.claude"
 [ ! -d "$HOME/.cursor" ] && mkdir "$HOME/.cursor"
 
+setup_symlinks() {
+  symlink_ai_dir  "commands"         "$HOME/.claude/commands"
+  symlink_ai_dir  "skills"           "$HOME/.claude/skills"
+  symlink_ai_dir  "agents"           "$HOME/.claude/agents"
+  symlink_ai_dir  "plans"            "$HOME/.claude/plans"
+  symlink_ai_dir  "commands"         "$HOME/.cursor/commands"
+  symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
+  symlink_ai_dir  "agents"           "$HOME/.cursor/agents"
+  symlink_ai_dir  "plans"            "$HOME/.cursor/plans"
+  symlink_ai_dir  "commands"         "$HOME/.codex/prompts"
+  symlink_ai_dir  "skills"           "$HOME/.codex/skills"
+  symlink_ai_dir  "agents"           "$HOME/.codex/agents"
+  symlink_ai_dir  "plans"            "$HOME/.codex/plans"
+
+  mkdir -p "$HOME/.claude/rules"
+  symlink_ai_file "rules/CLAUDE.md"  "$HOME/.claude/rules/CLAUDE.md"
+
+  mkdir -p "$HOME/.cursor/rules"
+  symlink_ai_file "rules/Instructions.mdc" "$HOME/.cursor/rules/Instructions.mdc"
+}
+
 migrate_all_plans
-
-symlink_ai_dir  "commands"         "$HOME/.claude/commands"
-symlink_ai_dir  "skills"           "$HOME/.claude/skills"
-symlink_ai_dir  "agents"           "$HOME/.claude/agents"
-symlink_ai_dir  "plans"            "$HOME/.claude/plans"
-symlink_ai_dir  "commands"         "$HOME/.cursor/commands"
-symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
-symlink_ai_dir  "agents"           "$HOME/.cursor/agents"
-symlink_ai_dir  "plans"            "$HOME/.cursor/plans"
-symlink_ai_dir  "commands"         "$HOME/.codex/prompts"
-symlink_ai_dir  "skills"           "$HOME/.codex/skills"
-symlink_ai_dir  "agents"           "$HOME/.codex/agents"
-symlink_ai_dir  "plans"            "$HOME/.codex/plans"
-
-mkdir -p "$HOME/.claude/rules"
-symlink_ai_file "rules/CLAUDE.md"  "$HOME/.claude/rules/CLAUDE.md"
-
-mkdir -p "$HOME/.cursor/rules"
-symlink_ai_file "rules/Instructions.mdc" "$HOME/.cursor/rules/Instructions.mdc"
+setup_symlinks
