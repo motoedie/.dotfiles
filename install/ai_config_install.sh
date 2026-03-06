@@ -76,6 +76,9 @@ setup_symlinks() {
 
   mkdir -p "$HOME/.cursor/rules"
   symlink_ai_file "rules/Instructions.mdc" "$HOME/.cursor/rules/Instructions.mdc"
+
+  mkdir -p "$HOME/.codex/rules"
+  symlink_ai_file "rules/Instructions.mdc" "$HOME/.codex/rules/Instructions.mdc"
 }
 
 migrate_all_plans
