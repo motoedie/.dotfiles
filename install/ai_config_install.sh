@@ -39,18 +39,38 @@ symlink_ai_file() {
   echo "Linked $dest -> $src"
 }
 
+migrate_plan() {
+  local src="$1"
+  if [ -d "$src" ] && [ ! -L "$src" ]; then
+    echo "Migrating plans from $src to $AI_TOOLS_DIR/plans"
+    mv "$src"/* "$AI_TOOLS_DIR/plans/" 2>/dev/null
+  fi
+}
+
+migrate_all_plans() {
+  mkdir -p "$AI_TOOLS_DIR/plans"
+  migrate_plan "$HOME/.claude/plans"
+  migrate_plan "$HOME/.cursor/plans"
+  migrate_plan "$HOME/.codex/plans"
+}
+
 [ ! -d "$HOME/.claude" ] && mkdir "$HOME/.claude"
 [ ! -d "$HOME/.cursor" ] && mkdir "$HOME/.cursor"
+
+migrate_all_plans
 
 symlink_ai_dir  "commands"         "$HOME/.claude/commands"
 symlink_ai_dir  "skills"           "$HOME/.claude/skills"
 symlink_ai_dir  "agents"           "$HOME/.claude/agents"
+symlink_ai_dir  "plans"            "$HOME/.claude/plans"
 symlink_ai_dir  "commands"         "$HOME/.cursor/commands"
 symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
 symlink_ai_dir  "agents"           "$HOME/.cursor/agents"
+symlink_ai_dir  "plans"            "$HOME/.cursor/plans"
 symlink_ai_dir  "commands"         "$HOME/.codex/prompts"
 symlink_ai_dir  "skills"           "$HOME/.codex/skills"
 symlink_ai_dir  "agents"           "$HOME/.codex/agents"
+symlink_ai_dir  "plans"            "$HOME/.codex/plans"
 
 mkdir -p "$HOME/.claude/rules"
 symlink_ai_file "rules/CLAUDE.md"  "$HOME/.claude/rules/CLAUDE.md"
