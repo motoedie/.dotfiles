@@ -73,12 +73,16 @@ setup_symlinks() {
 
   mkdir -p "$HOME/.claude/rules"
   symlink_ai_file "rules/CLAUDE.md"  "$HOME/.claude/rules/CLAUDE.md"
+  symlink_ai_file "rules/PERSONALITY.md"  "$HOME/.claude/rules/PERSONALITY.md"
 
   mkdir -p "$HOME/.cursor/rules"
-  symlink_ai_file "rules/INSTRUCTIONS.mdc" "$HOME/.cursor/rules/INSTRUCTIONS.mdc"
-
   mkdir -p "$HOME/.codex/rules"
-  symlink_ai_file "rules/Instructions.mdc" "$HOME/.codex/rules/INSTRUCTIONS.mdc"
+
+  symlink_ai_file "rules/INSTRUCTIONS.mdc" "$HOME/.cursor/rules/INSTRUCTIONS.mdc"
+  symlink_ai_file "rules/PERSONALITY.mdc" "$HOME/.cursor/rules/PERSONALITY.mdc"
+
+  symlink_ai_file "rules/INSTRUCTIONS.mdc" "$HOME/.codex/rules/INSTRUCTIONS.mdc"
+  symlink_ai_file "rules/PERSONALITY.mdc" "$HOME/.codex/rules/PERSONALITY.mdc"
 }
 
 migrate_all_plans
