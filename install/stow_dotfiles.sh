@@ -18,3 +18,4 @@ stow yabai
 stow zsh
 mkdir -p ~/.config/lazygit
 ln -sf ~/.dotfiles/lazygit/.config/lazygit/config.yml ~/.config/lazygit/config.yml
+ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
