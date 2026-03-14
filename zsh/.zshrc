@@ -36,6 +36,8 @@ alias sstart='sudo systemctl start'
 alias sstop='sudo systemctl stop'
 alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim stable'
 alias update-asdf-plugins='asdf plugin update --all'
+alias tmuxcodex='tmux new -As codex-app'
+alias tmuxclaude='tmux new -As claude-app'
 
 # System (Debian/Ubuntu specific)
 alias pkgi='sudo apt-get install'
