@@ -17,5 +17,6 @@ stow yabai
 [ -f ~/.zshrc ] && rm ~/.zshrc
 stow zsh
 mkdir -p ~/.config/lazygit
-ln -sf ~/.dotfiles/lazygit/.config/lazygit/config.yml ~/.config/lazygit/config.yml
+ln -sf ~/.dotfiles/lazygit/config.yml ~/.config/lazygit/config.yml
+ln -sf ~/.dotfiles/lazygit/tokyonight_moon.yml ~/.config/lazygit/tokyonight_moon.yml
 ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
