@@ -25,6 +25,9 @@ sh ./install/ai_config_install.sh
 #install scm-breeze
 sh ./install/scm_breeze_install.sh
 
+# install git-lfs
+sh ./install/git-lfs-install.sh
+
 # stow dotfiles
 sh ./install/stow_dotfiles.sh
 
