@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Comments"
+  short_description: "Add or rewrite intent-focused code comments"
+  default_prompt: "Document or rewrite the non-obvious parts of this code with concise, block-level comments that explain intent, branch rationale, and side effects without narrating every line."
