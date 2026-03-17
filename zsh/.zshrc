@@ -36,10 +36,6 @@ alias sstart='sudo systemctl start'
 alias sstop='sudo systemctl stop'
 alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim stable'
 alias update-asdf-plugins='asdf plugin update --all'
-alias tmuxcodex='tmux new -As codex-app'
-alias tmuxclaude='tmux new -As claude-app'
-alias tmuxapps='tmux new -As service-app'
-alias tmuxneovim='tmux new -As neovim-app'
 
 # System (Debian/Ubuntu specific)
 alias pkgi='sudo apt-get install'
@@ -48,6 +44,9 @@ alias pkgr='sudo apt-get remove'
 
 alias g_history='() {git log --oneline | fzf --height="80%" --preview="git show {1} -- $1 | delta"}'
 alias g_file_history='() {git log --oneline $1 | fzf --height="80%" --preview="git show --follow {1} -- $1 | delta"}'
+
+# Run tmux
+[ -r "$HOME/.dotfiles/zsh/tmux.zsh" ] && source "$HOME/.dotfiles/zsh/tmux.zsh"
 
 # DIRCOLORS (MacOS)
 export CLICOLOR=1
