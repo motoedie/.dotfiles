@@ -38,6 +38,7 @@ alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim st
 alias update-asdf-plugins='asdf plugin update --all'
 alias tmuxcodex='tmux new -As codex-app'
 alias tmuxclaude='tmux new -As claude-app'
+alias tmuxapps='tmux new -As service-app'
 
 # System (Debian/Ubuntu specific)
 alias pkgi='sudo apt-get install'
