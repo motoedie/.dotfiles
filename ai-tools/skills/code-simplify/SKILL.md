@@ -28,12 +28,31 @@ If `$ARGUMENTS` is empty, focus on code recently modified in the current session
 
 1. Identify the requested scope. Default to recently changed code.
 2. Read surrounding code to understand invariants and local conventions before editing.
-3. Simplify nesting, duplication, and unnecessary abstractions without changing behavior.
-4. Keep responsibilities separated. Do not collapse unrelated concerns into one function or component.
-5. Re-read the edited code and confirm it is easier to follow, debug, and extend.
-6. Summarize only meaningful changes.
+3. **Structural analysis (do this before any edits):**
+   - For each file in scope, identify the distinct responsibilities it contains (e.g., validation, data mapping, API calls, UI rendering, state management, type definitions, constants).
+   - Flag files that mix 3+ unrelated concerns, or where understanding one responsibility requires skipping past code for a completely different one. These are candidates for extraction.
+   - If extractions are needed, propose the split (file names + what moves where) before making changes.
+4. **Extract mixed concerns into focused modules:**
+   - Move cohesive groups of pure functions, validation logic, data transformers, or constants into their own files.
+   - Each extracted file should have a single clear purpose identifiable from its name.
+   - Keep the original file focused on its primary role (usually the React component, the main export, or the orchestration logic).
+   - Update all imports in the original file, its tests, and any other consumers.
+5. **Micro-level simplification** within each file (original and extracted):
+   - Simplify nesting, duplication, and unnecessary abstractions without changing behavior.
+   - Do not collapse unrelated concerns into one function or component.
+6. Re-read the edited code and confirm it is easier to follow, debug, and extend.
+7. Summarize only meaningful changes.
 
-## Heuristics
+## Structural heuristics (when to extract)
+
+- A file has functions/blocks that can be understood without reading the rest of the file → extract them.
+- Validation schemas, resolvers, or error-mapping logic sitting next to UI components → separate file.
+- Data transformation functions (mapping API responses to form values and back) next to rendering → separate file.
+- A component file contains large helper functions that don't use React hooks or JSX → extract to a plain `.ts` module.
+- Multiple top-level components in one file that aren't trivially small → split into separate files.
+- Constants or config objects shared across concerns → extract to a dedicated file or move to the types/constants file.
+
+## Micro-level heuristics
 
 - Inline trivial wrappers that add no clarity.
 - Extract repeated logic only when the result is clearer than the duplication.
