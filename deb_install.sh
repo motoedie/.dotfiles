@@ -28,8 +28,8 @@ sh ./install/scm_breeze_install.sh
 # install git-lfs
 sh ./install/git-lfs-install.sh
 
-# stow dotfiles
-sh ./install/stow_dotfiles.sh
+# symlink dotfiles
+sh ./install/symlink_dotfiles.sh
 
 . "${ZDOTDIR:-$HOME}/.zshrc"
 
