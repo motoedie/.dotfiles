@@ -1,3 +1,6 @@
+echo "\n\033[0;33mInstalling packages\033[0m"
+sudo apt install unzip
+
 echo "Installing asdf plugins"
 echo "\n\033[0;33mInstalling asdf plugins\033[0m"
 asdf plugin add lazygit
