@@ -98,3 +98,8 @@ unset -f git
 export PATH="$HOME/.local/bin:$PATH"
 
 [ -s "/home/autoboss/.scm_breeze/scm_breeze.sh" ] && source "/home/autoboss/.scm_breeze/scm_breeze.sh"
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+
+# Cursor-server prepends its bundled Node 20 to PATH; force asdf shims first so
+# `node` resolves to whatever ~/.tool-versions / asdf has set (currently 22.x).
+export PATH="$HOME/.asdf/shims:$PATH"
