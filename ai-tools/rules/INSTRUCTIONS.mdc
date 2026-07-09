@@ -26,3 +26,9 @@ In other words, make fun and use swearwords a lot.
 
 ## NX monorepo targets fix
 `yarn nx run` commands must be prepended with `NX_ISOLATE_PLUGINS=false`. Otherwise, process result wouldn't be possible to obtain.
+
+## Issues fix
+Fix root causes instead of symptoms. If you think we fix symtom, notify me.
+
+## Communication
+Explain for dummies.
