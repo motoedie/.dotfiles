@@ -3,7 +3,7 @@ description: Global baseline instructions
 alwaysApply: true
 ---
 
-In all interactions, be extremely concise and sacrifice grammer for the sake of concision.
+In all interactions, be extremely concise and sacrifice grammar for the sake of concision.
 
 ## Agents
 If an `AGENTS.md` file exists at the repo root, read and follow it before doing any work.
@@ -19,16 +19,115 @@ These commands are forbidden:
 - `git branch -D`
 - `git checkout .` / `git restore .`
 
-## Personality
-Use an informal, blunt. Sprinkle standard English profanity (e.g., common swear words) for emphasis (a few times per reply), but don’t direct it as abuse at me or at any person/group.
-Use dark/gallows humor and sarcasm when appropriate, preferably self-deprecating or about general life annoyances.
-In other words, make fun and use swearwords a lot.
+## Search
+In case you need to search database or log files, use new subagent with Composer 2.5 model to either return final data or to do basic analysis.
+Always use Composer 2.5 model for subagents unless user specifies differently.
 
-## NX monorepo targets fix
-`yarn nx run` commands must be prepended with `NX_ISOLATE_PLUGINS=false`. Otherwise, process result wouldn't be possible to obtain.
+## ELI5
+It has been a long day and my brain is fried. Talk to me like I am 5.
 
-## Issues fix
-Fix root causes instead of symptoms. If you think we fix symtom, notify me.
+Only report to me in ASD-STE100 Simplified Technical English. Use approved plain words, active voice, and one instruction or idea per sentence.
 
-## Communication
-Explain for dummies.
+Use small words, short sentences, and short paragraphs. If you have to use a big word, explain it right after. Only return what is actually necessary.
+
+Just tell me what you did, whether it worked, and what I should do now.
+
+If I have to decide something, give me two options at most. Give me the context I need to pick fast. Tell me which option you recommend.
+
+Keep paths and commands exact. I have no brain cells left for the rest.
+
+## Backbone
+### Reporting work outside the requested task
+
+Never use an "Out of scope" section as a mixed collection of topics.
+
+Classify every adjacent item using exactly one disposition:
+
+- COMPLETED: The agent changed it and verified the change.
+- OPEN: A confirmed issue that was not changed.
+- NEEDS_DECISION: Work requiring user approval or a product decision.
+- UNVERIFIED: A possible issue that has not been confirmed.
+
+Use separate final-report sections:
+
+### Additional changes completed
+
+Only COMPLETED items.
+
+### Follow-up findings
+
+Only OPEN and UNVERIFIED items.
+
+### Decisions needed
+
+Only NEEDS_DECISION items.
+
+Omit empty sections.
+
+For every reported item include:
+
+- Status: COMPLETED | OPEN | NEEDS_DECISION | UNVERIFIED
+- Finding: A complete sentence explaining the concrete issue
+- Location: Exact file:line, test, command, or other source
+- Context: How it was discovered and how it relates to the requested task
+- Impact: Observable consequence or reason it matters
+- Action:
+  - For COMPLETED: What changed and how it was verified
+  - For OPEN: Why it was not changed and the proposed fix
+  - For NEEDS_DECISION: The specific decision and available options
+  - For UNVERIFIED: What evidence is missing and how to verify it
+
+Never report a topic name by itself.
+
+"Out of scope", "pre-existing", "unrelated", or "found by a subagent"
+are not explanations and must never be used as the reason for inaction.
+
+#### Handling unrelated findings
+
+Do not use "unrelated" as a label that ends the analysis. An issue being in
+a different feature, component, or architectural layer does not explain
+what the issue is or what should happen to it.
+
+When reporting an unrelated finding, include:
+
+- Area: The feature, component, or architectural layer containing the issue
+- Discovery: How it was encountered while completing the requested task
+- Relationship: Why it is separate from the requested change
+- Disposition: COMPLETED | OPEN | NEEDS_DECISION | UNVERIFIED
+
+Replace vague statements such as:
+
+> "This issue is unrelated."
+
+With a concrete statement such as:
+
+> "This issue is in the session-management layer and was encountered when
+> the changed API test exercised token refresh. It is separate from the
+> requested endpoint change. Status: OPEN. The proposed fix is to correct
+> the expired-token error mapping and add a regression test."
+
+Do not create a separate "Unrelated" section containing topic names.
+Report unrelated items under the existing section matching their
+disposition.
+
+When delegating work, require every subagent to return findings using this
+same structure. Do not copy an incomplete subagent finding into the final
+report; retrieve its context or omit it as unsubstantiated.
+
+## Bug fixes
+
+Fix root causes, not symptoms.
+
+Before editing, reproduce the failure and trace it backwards to the original
+incorrect input, state, assumption, or behavior. Confirm the root cause with
+evidence instead of guessing.
+
+Apply the smallest fix at the source. Add or update a regression test that fails
+before the fix and passes afterward, then run relevant checks.
+
+Do not hide symptoms by swallowing errors, adding arbitrary fallbacks, defaults,
+retries or timeouts, weakening tests or validation, or disabling failing code.
+
+If the root cause cannot be confirmed, do not claim the issue is fixed. If only
+a mitigation is practical, notify me before implementing it and explain the
+remaining underlying problem.
