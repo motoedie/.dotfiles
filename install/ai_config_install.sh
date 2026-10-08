@@ -39,21 +39,6 @@ symlink_ai_file() {
   echo "Linked $dest -> $src"
 }
 
-migrate_plan() {
-  local src="$1"
-  if [ -d "$src" ] && [ ! -L "$src" ]; then
-    echo "Migrating plans from $src to $AI_TOOLS_DIR/plans"
-    mv "$src"/* "$AI_TOOLS_DIR/plans/" 2>/dev/null
-  fi
-}
-
-migrate_all_plans() {
-  mkdir -p "$AI_TOOLS_DIR/plans"
-  migrate_plan "$HOME/.claude/plans"
-  migrate_plan "$HOME/.cursor/plans"
-  migrate_plan "$HOME/.codex/plans"
-}
-
 [ ! -d "$HOME/.claude" ] && mkdir "$HOME/.claude"
 [ ! -d "$HOME/.cursor" ] && mkdir "$HOME/.cursor"
 
@@ -78,5 +63,4 @@ setup_symlinks() {
   symlink_ai_file "rules/INSTRUCTIONS.mdc" "$HOME/.codex/rules/INSTRUCTIONS.mdc"
 }
 
-migrate_all_plans
 setup_symlinks
