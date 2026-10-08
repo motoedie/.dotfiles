@@ -60,29 +60,22 @@ migrate_all_plans() {
 setup_symlinks() {
   symlink_ai_dir  "commands"         "$HOME/.claude/commands"
   symlink_ai_dir  "skills"           "$HOME/.claude/skills"
-  symlink_ai_dir  "agents"           "$HOME/.claude/agents"
   symlink_ai_dir  "plans"            "$HOME/.claude/plans"
   symlink_ai_dir  "commands"         "$HOME/.cursor/commands"
   symlink_ai_dir  "skills"           "$HOME/.cursor/skills"
-  symlink_ai_dir  "agents"           "$HOME/.cursor/agents"
   symlink_ai_dir  "plans"            "$HOME/.cursor/plans"
   symlink_ai_dir  "commands"         "$HOME/.codex/prompts"
   symlink_ai_dir  "skills"           "$HOME/.codex/skills"
-  symlink_ai_dir  "agents"           "$HOME/.codex/agents"
   symlink_ai_dir  "plans"            "$HOME/.codex/plans"
 
   mkdir -p "$HOME/.claude/rules"
   symlink_ai_file "rules/CLAUDE.md"  "$HOME/.claude/rules/CLAUDE.md"
-  symlink_ai_file "rules/PERSONALITY.md"  "$HOME/.claude/rules/PERSONALITY.md"
 
   mkdir -p "$HOME/.cursor/rules"
   mkdir -p "$HOME/.codex/rules"
 
   symlink_ai_file "rules/INSTRUCTIONS.mdc" "$HOME/.cursor/rules/INSTRUCTIONS.mdc"
-  symlink_ai_file "rules/PERSONALITY.mdc" "$HOME/.cursor/rules/PERSONALITY.mdc"
-
   symlink_ai_file "rules/INSTRUCTIONS.mdc" "$HOME/.codex/rules/INSTRUCTIONS.mdc"
-  symlink_ai_file "rules/PERSONALITY.mdc" "$HOME/.codex/rules/PERSONALITY.mdc"
 }
 
 migrate_all_plans
