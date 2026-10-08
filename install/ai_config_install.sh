@@ -7,7 +7,7 @@ symlink_ai_dir() {
   local src="$AI_TOOLS_DIR/$1"
   local dest="$2"
 
-  if [ -L "$dest" ]; then
+  if [ -L "$dest" ] && [ -e "$dest" ]; then
     echo "Skipping $dest (already a symlink)"
     return
   fi
@@ -17,7 +17,7 @@ symlink_ai_dir() {
     mv "$dest" "${dest}.bak"
   fi
 
-  ln -s "$src" "$dest"
+  ln -sfn "$src" "$dest"
   echo "Linked $dest -> $src"
 }
 
@@ -25,7 +25,7 @@ symlink_ai_file() {
   local src="$AI_TOOLS_DIR/$1"
   local dest="$2"
 
-  if [ -L "$dest" ]; then
+  if [ -L "$dest" ] && [ -e "$dest" ]; then
     echo "Skipping $dest (already a symlink)"
     return
   fi
@@ -35,7 +35,7 @@ symlink_ai_file() {
     mv "$dest" "${dest}.bak"
   fi
 
-  ln -s "$src" "$dest"
+  ln -sfn "$src" "$dest"
   echo "Linked $dest -> $src"
 }
 
