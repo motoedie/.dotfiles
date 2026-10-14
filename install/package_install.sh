@@ -1,6 +1,16 @@
 echo "\n\033[0;33mInstalling packages\033[0m"
 sudo apt install unzip
 
+echo "Installing yazi"
+curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
+echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
+
+# Refresh only Yazi's repository and preserve other packages' cached indexes.
+sudo apt update \
+  -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/yazi.list \
+  -o Dir::Etc::sourceparts=- \
+  -o APT::Get::List-Cleanup=false && sudo apt install file yazi
+
 echo "Installing asdf plugins"
 echo "\n\033[0;33mInstalling asdf plugins\033[0m"
 asdf plugin add lazygit
