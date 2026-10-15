@@ -53,8 +53,9 @@ printf 'Dotfiles doctor - %s\n\n' "$platform"
 
 check_command "Git" git
 check_command "Zsh" zsh
-check_command "asdf" asdf
+check_command "Homebrew" brew
 check_command "Neovim" nvim
+check_command "tmux" tmux
 check_command "lazygit" lazygit
 check_command "ripgrep" rg
 check_command "fzf" fzf

@@ -9,9 +9,9 @@ fi
 # powerlevel10k
 sh ./install/p10k_install.sh
 
-# install Rust (required by some asdf plugins, e.g. bat)
-sh ./install/rust_install.sh
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+# install Homebrew (package manager for CLI tools)
+sh ./install/brew_install.sh
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # install packages
 sh ./install/package_install.sh
@@ -32,9 +32,6 @@ sh ./install/git-lfs-install.sh
 sh ./install/symlink_dotfiles.sh
 
 . "${ZDOTDIR:-$HOME}/.zshrc"
-
-# install Neovim
-sh ./install/neovim_plugin_install.sh
 
 # install astronvim
 sh ./install/astronvim_install.sh
