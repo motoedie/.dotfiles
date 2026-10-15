@@ -1,6 +1,0 @@
-{
-	"name": "motoedie",
-	"description": "Personal Claude Code mods.",
-	"owner": { "name": "Ladislav Starek" },
-	"plugins": [{ "name": "mermaid-render", "source": "./mods/mermaid-render" }]
-}

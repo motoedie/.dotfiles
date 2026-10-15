@@ -1,0 +1,105 @@
+{
+  "skill_name": "sql-health",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review a changed users lookup that uses `SELECT * FROM users WHERE id = $1` with the request id passed separately. The primary key is `users(id)`, and EXPLAIN reports an Index Scan on that key.",
+      "expected_output": "The query receives all checks, produces no injection or index finding, and does not report the successful Index Scan as news.",
+      "files": [],
+      "expectations": [
+        "Recognizes PostgreSQL value parameterization as safe",
+        "Checks the existing primary-key index before considering a recommendation",
+        "Does not create a finding merely because EXPLAIN succeeded or used an Index Scan"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review a changed TypeScript query: `db.query(`SELECT * FROM users WHERE email = '${email}'`)`. The email comes directly from an HTTP query parameter.",
+      "expected_output": "A verified SQL-injection finding cites the changed interpolation and request-controlled path and recommends a bound PostgreSQL value parameter.",
+      "files": [],
+      "expectations": [
+        "Traces the actual untrusted value path",
+        "Reports SQL injection with concrete evidence and impact",
+        "Recommends value binding rather than vague sanitization"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review `SELECT id FROM events WHERE tenant_id = $1 ORDER BY created_at DESC`. The schema already has `(tenant_id, created_at DESC) INCLUDE (id)`, and EXPLAIN uses an Index Only Scan.",
+      "expected_output": "No index recommendation is made because the existing covering composite index supports filtering, ordering, and projection.",
+      "files": [],
+      "expectations": [
+        "Inspects composite order and included columns",
+        "Does not recommend a duplicate or redundant index",
+        "Does not report the plan node as a finding"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review `SELECT * FROM orders WHERE customer_id = $1 ORDER BY created_at DESC LIMIT 50` on a hot request path. Orders retain millions of rows and large customers have many orders. Existing indexes are only `(customer_id)` and `(created_at)`. EXPLAIN uses the customer index and then sorts all matching customer rows before the limit.",
+      "expected_output": "A supported index finding recommends `(customer_id, created_at DESC)`, explaining that it supports the equality filter and requested order and why the separate indexes do not.",
+      "files": [],
+      "expectations": [
+        "Checks all relevant existing indexes",
+        "Connects the Sort to the query and schema rather than flagging it in isolation",
+        "Explains composite column order and avoids simplistic Seq Scan logic"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Run sql-health on a local revision range for a parameterized account lookup. The local table has three rows and EXPLAIN chooses Seq Scan, while the schema has a suitable index on account_id.",
+      "expected_output": "The tiny-table Seq Scan does not automatically create an index or performance finding; the query structure and existing index are considered together.",
+      "files": [],
+      "expectations": [
+        "Treats tiny-dataset cardinality as non-representative",
+        "Does not infer a missing index from Seq Scan alone",
+        "Still records that EXPLAIN and index checks were completed"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Review a change from `WHERE user_uuid = $1::uuid` to `WHERE user_uuid::text = $1`. The column is uuid and has a normal btree index on user_uuid; EXPLAIN now uses Seq Scan.",
+      "expected_output": "A verified performance finding explains that casting the indexed column prevents normal index use and recommends restoring type-compatible parameter comparison before proposing another index.",
+      "files": [],
+      "expectations": [
+        "Connects the changed cast, column type, existing index, and plan",
+        "Prefers a query/type fix over an expression index",
+        "Attributes the issue to the changed line"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Review a branch that adds a migration changing events.tenant_id from uuid to text and changes an events query to compare it with a uuid parameter. The migration also replaces `(tenant_id, created_at)` with `(created_at)`.",
+      "expected_output": "The changed migration is reviewed with the query; findings cover evidenced type/index incompatibility without expanding into locking, deployment, or backfill advice.",
+      "files": [],
+      "expectations": [
+        "Runs migration review because a migration is changed",
+        "Uses the post-migration schema for query analysis",
+        "Stays within query correctness, performance, and index effects"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Review changed report SQL, but no PostgreSQL service or project EXPLAIN command is available. Schema definitions and indexes are present in migrations.",
+      "expected_output": "Static injection, schema, performance, and index review continues; unavailable EXPLAIN evidence is not treated as a finding or a pass.",
+      "files": [],
+      "expectations": [
+        "Does not install or start PostgreSQL",
+        "Does not stop the static review",
+        "Does not mark the review incomplete because EXPLAIN is unavailable; with no findings it says Nothing notable"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Review a 24-file change split into two units. Each unit's reviewer returns one high-impact query-performance finding, then the synthesis subagent times out. The verifier confirms both findings.",
+      "expected_output": "Both unit findings go to the dedicated verifier instead of being dropped; the report contains the two confirmed findings and is marked incomplete because synthesis failed.",
+      "files": [],
+      "expectations": [
+        "Sends the combined unit findings to the verifier",
+        "Does not drop either unit's finding",
+        "Reports both confirmed findings",
+        "Marks the review incomplete and names the failed synthesis"
+      ]
+    }
+  ]
+}

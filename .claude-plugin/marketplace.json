@@ -1,0 +1,38 @@
+{
+	"name": "motoedie",
+	"description": "Personal skill plugins for Claude Code, Codex, and Cursor, plus Claude Code mods.",
+	"owner": { "name": "Ladislav Starek" },
+	"plugins": [
+		{ "name": "mermaid-render", "source": "./ai-tools/mods/mermaid-render" },
+		{
+			"name": "motoedie-code-review",
+			"description": "Code review skills: change analysis, behavior, quality, security, SQL health, and test gaps.",
+			"source": "./ai-tools/skills/code-review"
+		},
+		{
+			"name": "motoedie-utils",
+			"description": "General dev skills: terse replies, code comments, git conflict resolution, implementation plans, TDD, and skill authoring.",
+			"source": "./ai-tools/skills/utils"
+		},
+		{
+			"name": "writing-for-agents",
+			"description": "Matt Pocock's writing-for-agents skill only.",
+			"source": { "source": "git-subdir", "url": "https://github.com/mattpocock/skills.git", "path": "skills/productivity/writing-for-agents" }
+		},
+		{
+			"name": "retro",
+			"description": "Matt Pocock's retro skill only. Needs writing-for-agents.",
+			"source": { "source": "git-subdir", "url": "https://github.com/mattpocock/skills.git", "path": "skills/engineering/retro" }
+		},
+		{
+			"name": "grill-me",
+			"description": "Matt Pocock's grill-me skill only. Needs grilling.",
+			"source": { "source": "git-subdir", "url": "https://github.com/mattpocock/skills.git", "path": "skills/productivity/grill-me" }
+		},
+		{
+			"name": "grilling",
+			"description": "Matt Pocock's grilling skill only. Called by grill-me.",
+			"source": { "source": "git-subdir", "url": "https://github.com/mattpocock/skills.git", "path": "skills/productivity/grilling" }
+		}
+	]
+}

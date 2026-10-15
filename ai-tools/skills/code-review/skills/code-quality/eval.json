@@ -1,0 +1,180 @@
+{
+  "skill_name": "code-quality",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use code-quality to review a changed request mapper. The mapper now performs a database lookup as well as field translation, so changing the mapping requires understanding database lifecycle and failure handling. The reviewer proposes moving both behaviors into a generic helper controlled by a mode flag.",
+      "expected_output": "A medium-impact finding reports the concrete mapping-maintenance burden, while verification replaces the mode-flag fix with a separation that keeps translation and I/O ownership explicit.",
+      "files": [],
+      "expectations": [
+        "Verifies the maintenance problem and the named maintenance task",
+        "Keeps the supported finding",
+        "Rejects the proposed mode-flag fix because it introduces comparable coupling",
+        "Returns a concrete replacement fix that preserves behavior"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Verify a proposed code-quality finding that says callers must remember to invoke initialize() before send(). The changed constructor always invokes initialize(), the state type prevents send() before construction completes, and every caller uses that constructor.",
+      "expected_output": "The finding is rejected because the observed constructor and state invariant disprove the claimed maintenance problem.",
+      "files": [],
+      "expectations": [
+        "Inspects the constructor, state invariant, and callers",
+        "Rejects the finding because counterevidence disproves What's wrong and its maintenance burden",
+        "Does not retain the finding merely by rewriting its explanation or fix"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Verify a proposed high-impact code-quality finding about a changed mapper that mixes field translation with persistence. Inspection shows one owning module and one caller, but changing the mapping still requires coordinating pure transformation logic with database failure handling.",
+      "expected_output": "The valid maintenance finding remains, but its impact is corrected from high to medium because the evidence establishes a material current burden without affected external callers or a shared ownership boundary.",
+      "files": [],
+      "expectations": [
+        "Preserves the supported maintenance finding",
+        "Applies impact from demonstrated consequences rather than accepting the reviewer label",
+        "Corrects high to medium",
+        "Does not treat correction of impact as disproof of the finding"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Run standard code-quality verification on a proposed medium-impact finding. The change gives one local intermediate value a misleading but non-public name. A maintainer must reread one nearby expression to understand it, but no caller, boundary, behavior, or material maintenance task is affected.",
+      "expected_output": "Verification corrects the finding to low impact and retains it because standard mode reports low-impact findings.",
+      "files": [],
+      "expectations": [
+        "Does not assign impact from the issue being inside one function",
+        "Reassesses the demonstrated consequence as below medium",
+        "Retains the corrected low finding in the standard report"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Run code-quality Richard Ejem on a small change that duplicates one domain label in a second production location. Updating that label now requires one unnecessary synchronized edit, but the change does not materially increase risk or cross an ownership boundary. This is the only finding.",
+      "expected_output": "Richard Ejem reports one verified low-impact finding that names the current label-maintenance task and the extra synchronized edit.",
+      "files": [],
+      "expectations": [
+        "Uses Richard Ejem impact rules",
+        "Justifies low through a concrete minor maintenance consequence rather than file or function locality",
+        "Sends the low-impact finding to the dedicated verifier",
+        "Reports the finding only after verification"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Run code-quality Richard Ejem on a normal-size change. The reviewer returns one medium-impact ownership violation, one low-impact naming inconsistency with a concrete minor maintenance cost, and one nit about comment wording.",
+      "expected_output": "The medium and low findings go to independent verification. The final report contains the verified findings and the reviewer-assessed nit.",
+      "files": [],
+      "expectations": [
+        "Partitions findings by impact before verification",
+        "Sends the medium and low findings to the verifier",
+        "Does not send the nit to the verifier",
+        "Preserves the nit in the Richard Ejem report",
+        "Does not ask the dedicated verifier to merge findings"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "In Richard Ejem mode, verify a proposed low-impact finding whose cited burden proves to be only comment wording with no maintenance task made harder.",
+      "expected_output": "The verifier corrects the finding to nit and retains it because Richard Ejem mode reports nits.",
+      "files": [],
+      "expectations": [
+        "Corrects impact according to the observed consequence",
+        "Retains the verifier-corrected nit in Richard Ejem mode",
+        "Does not rerun review passes or search for new findings"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Review a one-line production change that patches feature-specific policy into a shared public helper. Several existing callers now inherit that policy, and changing the feature requires coordinated edits across two ownership boundaries.",
+      "expected_output": "The finding is high impact despite originating from one line in one function because the demonstrated caller and ownership consequences meet the high-impact definition.",
+      "files": [],
+      "expectations": [
+        "Assigns impact from caller and ownership consequences",
+        "Does not lower impact because the changed code is small or localized",
+        "Names the related maintenance task and coordinated edits"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Run code-quality Richard Ejem on a 24-file change split into semantic groups. Group reviewers return high-, medium-, low-, and nit-impact findings, and every file and selected check is covered.",
+      "expected_output": "Large-scope synthesis reconciles coverage, de-duplicates cross-group output, sends high, medium, and low findings to one dedicated verifier, carries reviewer-originated nits without independent source inspection, and renders one report.",
+      "files": [],
+      "expectations": [
+        "Uses the large-scope workflow and semantic groups",
+        "Reconciles every file and selected check before synthesis",
+        "Verifies high-, medium-, and low-impact findings",
+        "Carries nit findings without independent verification",
+        "Uses one dedicated verifier for all verified findings"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Review this branch only for missing tests around a new parser.",
+      "expected_output": "Code-quality does not own this request because test-gap review is explicitly outside its scope.",
+      "files": [],
+      "expectations": [
+        "Does not activate code-quality passes for a test-gap-only request",
+        "Does not report missing tests as maintainability findings"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Run code-quality with output=json. The verifier confirms one medium-impact finding, then reaches an execution limit before checking a second finding.",
+      "expected_output": "The final JSON keeps the confirmed finding, keeps the unchecked finding as proposed, and sets complete to false.",
+      "files": [],
+      "expectations": [
+        "Preserves the confirmed finding",
+        "Keeps the finding the verifier did not decide, as proposed",
+        "Sets complete to false",
+        "Does not replace the findings with an empty findings array"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Run standard code-quality on a change that adds a third copy of a table-backed loader and handler next to an existing one. The copies differ only in the payload builder, error message, and tab-data key. No evidence shows the copies must stay separate.",
+      "expected_output": "The report keeps a verified duplication finding at low or medium impact and names the edit that now must be repeated in each copy.",
+      "files": [],
+      "expectations": [
+        "Does not drop the finding because the copy matches an existing pattern",
+        "Names the maintenance task that now needs repeated edits",
+        "Sends the finding to the dedicated verifier",
+        "Reports the finding at low impact or higher"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Run standard code-quality on a change whose only issue is a new comment with awkward wording. The comment states correct facts, and no maintenance task becomes harder.",
+      "expected_output": "The reviewer classifies the issue as nit and drops it, so the report outputs only `Nothing notable`.",
+      "files": [],
+      "expectations": [
+        "Classifies the issue as nit",
+        "Drops the nit in standard mode",
+        "Does not spawn a dedicated verifier"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Run code-quality Richard Ejem on a change whose only issue is awkward wording in a new comment. The comment states correct facts, and no maintenance task becomes harder.",
+      "expected_output": "The report contains one `nit` finding that cites the changed line.",
+      "files": [],
+      "expectations": [
+        "Classifies the issue as nit",
+        "Does not skip the nit in Richard Ejem mode",
+        "Does not send the nit to the verifier",
+        "Cites the changed line"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Run code-quality on a 24-file change split into two semantic groups. Each group's reviewer returns one medium-impact finding, then the synthesis subagent times out. The verifier confirms both findings.",
+      "expected_output": "Both group findings go to the dedicated verifier instead of being dropped; the report contains the two confirmed findings and is marked incomplete because synthesis failed.",
+      "files": [],
+      "expectations": [
+        "Sends the combined group findings to the verifier",
+        "Does not drop either group's finding",
+        "Reports both confirmed findings",
+        "Marks the review incomplete and names the failed synthesis"
+      ]
+    }
+  ]
+}

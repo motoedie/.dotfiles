@@ -1,0 +1,130 @@
+{
+  "skill_name": "security-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run security-analysis on a normal-size Quick review. A changed API handler passes request-controlled text to a shell command, and the reviewer flags the changed sink as a candidate.",
+      "expected_output": "The workflow runs the scanner, selects the input-and-content and security-test passes, traces the request value to the command sink, independently verifies the candidate, and reports it only when the attack path and required evidence are confirmed.",
+      "files": [],
+      "expectations": [
+        "Runs the deterministic scanner before semantic review",
+        "Selects every applicable Quick pass from observed code surfaces",
+        "Traces the complete request-to-command path rather than judging one line",
+        "Uses one read-only verifier because a candidate finding exists",
+        "Reports only findings that meet the evidence and confidence contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run security-analysis standard on a change that adds a webhook route, request DTO, serializer, outbound API client, and signature check.",
+      "expected_output": "The review applies all applicable Quick rules and adds the Standard API and identity/cryptography passes without weakening full-path tracing or loading unrelated specialized passes.",
+      "files": [],
+      "expectations": [
+        "Treats Standard as cumulative over Quick",
+        "Selects passes from evidenced surfaces rather than filenames alone",
+        "Applies api-security and identity-and-cryptography where relevant",
+        "Does not reduce tracing or evidence requirements at Standard depth"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Run security-analysis deep on a 24-file cross-service change. One group owns an authenticated export route and authorization middleware; another owns the worker, tenant-scoped storage, and download path. Every unit finishes its assigned checks and no candidate vulnerability or security test gap remains after synthesis.",
+      "expected_output": "The workflow builds semantic groups and a complete file/pass ledger, preserves the cross-service authorization and tenant flow, performs the Deep whole-change checks during synthesis, and skips the dedicated verifier because no candidate findings remain.",
+      "files": [],
+      "expectations": [
+        "Routes the change through the large-scope workflow",
+        "Keeps related route, middleware, worker, storage, and download paths connected",
+        "Reconciles every file, range, selected pass, and cross-unit link",
+        "Performs whole-change threat modeling, exploit validation, and operational readiness",
+        "Skips the dedicated verifier when no candidate findings remain",
+        "Emits a clean result only after coverage is complete"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Run security-analysis on one tightly coupled 3,000-line authentication-policy file whose functions exceed a usable review unit, while its shared session and authorization helpers must remain visible to every part.",
+      "expected_output": "The large-scope workflow creates stable semantic subunit IDs and exact target ranges, repeats the required shared context, reconciles every range and selected pass, and records any range that cannot be meaningfully processed as not reviewed and sets complete to false.",
+      "files": [],
+      "expectations": [
+        "Does not treat one oversized file as one unbounded unit",
+        "Splits only at function or domain boundaries",
+        "Preserves shared session and authorization context in child units",
+        "Accounts for every target range and file-pass pair",
+        "Names the exact unreviewed range when no meaningful split is possible"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Run a large security-analysis review where the API unit completes and returns supported findings, but the background-job unit is truncated before finishing its authorization-and-tenant-isolation pass.",
+      "expected_output": "The report preserves supported completed findings, sets complete to false, names the failed unit, files, ranges, pass, and unresolved links, and never presents a clean result.",
+      "files": [],
+      "expectations": [
+        "Preserves successful work from completed units",
+        "Reconciles returned work against the expected ledger",
+        "Names the exact missing unit, files, ranges, passes, and links",
+        "Sends the complete candidate set to the dedicated verifier",
+        "Shows every supported finding and does not print a Security review incomplete message"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "All security-analysis units finish, but combining their summaries exceeds the available synthesis limit before cross-unit credential and sensitive-data flows are resolved.",
+      "expected_output": "Synthesis combines related summaries hierarchically, reconciles the result against the original coverage ledger, reopens original evidence for disputed claims, and does not proceed to a clean report while cross-unit flows remain unresolved.",
+      "files": [],
+      "expectations": [
+        "Uses hierarchical synthesis instead of dropping unit output",
+        "Retains the original coverage ledger through every synthesis level",
+        "Reopens primary evidence when summaries cannot settle a claim",
+        "Requires cross-unit links to be resolved before completion",
+        "Reports the exact unreviewed scope when synthesis or cross-unit work remains unresolved"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Run security-analysis staged. The Git index contains a newly added insecure JWT algorithm setting, while the working-tree version of the same file has already replaced it with an allowed algorithm.",
+      "expected_output": "The review uses HEAD-to-index scope and evaluates the indexed insecure setting rather than the incidental working-tree version, then follows the normal scanner, pass-selection, and verification workflow.",
+      "files": [],
+      "expectations": [
+        "Resolves staged scope as HEAD to the Git index",
+        "Reads finding evidence from the indexed content source",
+        "Does not use the safer working-tree version to reject the indexed candidate",
+        "Passes the same resolved scope to review and verification"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Run security-analysis uncommitted on a normal-size change. Review proposes two candidates, each with confidence 85: an SSRF in a new URL-fetch helper and token logging in a new retry handler. The verifier confirms the SSRF, then hits its context limit before deciding the token-logging candidate.",
+      "expected_output": "The Markdown report shows the confirmed SSRF and the undecided token-logging candidate as proposed, treats the review as incomplete, and names the unfinished verification.",
+      "files": [],
+      "expectations": [
+        "Keeps the confirmed SSRF finding",
+        "Keeps the undecided candidate as proposed instead of rejecting or dropping it",
+        "Treats the review as incomplete",
+        "Names the unfinished verification in the report"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Run security-analysis staged on a normal-size change. One changed configuration file cannot be read, and the rest of the change has no candidate findings.",
+      "expected_output": "The review does not report a clean result; the Markdown report names the unread file and treats the review as incomplete.",
+      "files": [],
+      "expectations": [
+        "Does not output 'No security issues identified in the reviewed scope'",
+        "Names the exact file that could not be inspected",
+        "Does not infer the unread file is safe"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Run security-analysis on a 24-file change split into two units. Each unit's reviewer returns one candidate finding, then the synthesis subagent times out. The verifier confirms both findings.",
+      "expected_output": "Both unit findings go to the dedicated verifier instead of being dropped; the report contains the two confirmed findings, treats the review as incomplete, and never presents a clean result.",
+      "files": [],
+      "expectations": [
+        "Sends the combined unit findings to the verifier",
+        "Does not drop either unit's finding",
+        "Reports both confirmed findings",
+        "Treats the review as incomplete and names the failed synthesis"
+      ]
+    }
+  ]
+}

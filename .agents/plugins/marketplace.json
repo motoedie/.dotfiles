@@ -1,0 +1,32 @@
+{
+  "name": "motoedie",
+  "interface": {
+    "displayName": "motoedie"
+  },
+  "plugins": [
+    {
+      "name": "motoedie-code-review",
+      "source": {
+        "source": "local",
+        "path": "./ai-tools/skills/code-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "motoedie-utils",
+      "source": {
+        "source": "local",
+        "path": "./ai-tools/skills/utils"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

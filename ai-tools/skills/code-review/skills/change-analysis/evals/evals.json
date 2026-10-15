@@ -1,0 +1,174 @@
+{
+  "skill_name": "change-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use change-analysis to brief me on the current API feature branch before I review it.",
+      "expected_output": "A report-only project summary that explains the API change and its concrete effects on callers, consumers, and user or system behavior without exposing the internal file manifest or evidence ledger.",
+      "files": [],
+      "expectations": [
+        "Builds a complete changed-file manifest before analysis",
+        "Groups related files into semantic behavior rather than directory buckets",
+        "Uses repository evidence internally and labels uncertainty without printing claim-status metadata",
+        "Explains the consequence of the changed API rather than merely naming affected subsystems",
+        "Does not produce a reading route or file inventory",
+        "Does not report defects, security findings, maintainability findings, or test gaps"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Analyze this large cross-service branch. It changes an API DTO, a handler, a database migration, a worker, a frontend consumer, generated clients, and tests.",
+      "expected_output": "The skill analyzes every changed file internally, then produces human-facing project topics that explain the cross-service behavior and concrete effects without exposing units, file classifications, or coverage bookkeeping.",
+      "files": [],
+      "expectations": [
+        "Uses the large-scope workflow",
+        "Keeps producers, contracts, consumers, and tests connected",
+        "Classifies generated files internally without letting them dominate the explanation",
+        "Reconciles all file and unit IDs internally",
+        "Includes every important behavior and consequence without imposing a topic or sentence limit",
+        "Does not add cross-unit, reading-route, scope, or coverage sections"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Run change-analysis on this small documentation and symbol-rename branch.",
+      "expected_output": "The skill internally permits one semantic unit and produces a short summary of the limited behavior and impact. It omits Open questions and Limitations because neither applies.",
+      "files": [],
+      "expectations": [
+        "Does not force multiple units for a small change",
+        "Does not manufacture a review target or open question",
+        "Does not print internal scope or coverage bookkeeping"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Explain this retention-policy change. The code changes the default from 30 to 90 days, but no local requirement or design document states which value the product intends.",
+      "expected_output": "The summary states the implemented retention effect, while a conditional Open questions section asks which period the product intends and explains what behavior depends on the answer.",
+      "files": [],
+      "expectations": [
+        "Does not expose internal Observed or Unresolved labels",
+        "Does not infer product intent from the new constant",
+        "Names the product decision and the behavior that depends on it"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Analyze the whole branch, but one generated schema file cannot be read and the worker unit was truncated by the available tool.",
+      "expected_output": "The skill preserves completed internal analysis and adds one concise limitation explaining which behavior or conclusion remains uncertain. It does not print a manifest, unit ledger, or file-level gap list.",
+      "files": [],
+      "expectations": [
+        "Does not silently omit the unreadable or truncated work",
+        "Does not imply that the affected conclusion is established",
+        "Does not replace exhaustive internal coverage with a priority list",
+        "Does not expose coverage bookkeeping in the project summary"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Review my branch and find correctness bugs and missing tests.",
+      "expected_output": "The skill does not own this request; code-behavior is the appropriate review capability.",
+      "files": [],
+      "expectations": [
+        "Does not route defect or test-gap review through change-analysis"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Review this branch before merge.",
+      "expected_output": "This is a boundary request. Change-analysis applies only if the user needs a concise project-impact summary; defect, maintainability, or security review should route to the corresponding review skill.",
+      "files": [],
+      "expectations": [
+        "Recognizes the ambiguous meaning of review",
+        "Does not absorb neighboring review responsibilities"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Summarize a 75-file branch that turns computed site, routing-domain, and STP-domain attributes into reserved system labels. Users may override those labels, manual assignments outrank system values, topology recalculation preserves generated assignments, and tables, graphs, and path lookup consume the winning value with an attribute fallback.",
+      "expected_output": "A readable summary explains that computed topology groupings become managed labels, users can override grouping consistently across affected views without changing discovered attributes, overrides persist because of assignment priority and rebuild behavior, and fallback preserves behavior when labels are unavailable. Supporting migrations, UI behavior, and validation appear only as project-level topics with concrete effects.",
+      "files": [],
+      "expectations": [
+        "Explains user, system, workflow, persistence, and compatibility impacts",
+        "Does not enumerate the 75 files or reproduce internal evidence",
+        "Does not mention semantic units or cross-unit relationships",
+        "Does not provide a reviewer reading route",
+        "Does not output scope or coverage when analysis completed",
+        "Does not repeat the summary verbatim in Main changes"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Run change-analysis with this Jira ticket. Its description is unstructured prose asking for audit events on policy changes, the actor and timestamp in each event, and retention for 90 days. Later comments clarify that bulk policy updates need one event per changed policy. Compare the ticket with the branch.",
+      "expected_output": "The report starts with Acceptance criteria, derives each concrete requirement from the full unstructured description and comments, and maps every active requirement to branch evidence before the normal Summary.",
+      "files": [],
+      "expectations": [
+        "Prints Acceptance criteria before Summary",
+        "Derives testable requirements without requiring a formal acceptance-criteria heading",
+        "Reads all supplied comments and includes the bulk-update clarification",
+        "Uses exactly one status per active requirement",
+        "Does not print active requirements with Implemented status",
+        "Does not treat background or rationale as a requirement",
+        "Does not expose the internal requirement ledger"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Analyze this branch with a Jira ticket whose description has explicit acceptance criteria. The supplied comments discuss implementation details but do not amend, replace, or withdraw any criterion.",
+      "expected_output": "The report starts with Acceptance criteria, checks the comments for requirement changes, retains the original criteria because no clear amendment exists, and then gives the normal project-impact summary.",
+      "files": [],
+      "expectations": [
+        "Reads comments even though explicit acceptance criteria exist",
+        "Does not treat a newer comment as an automatic requirement change",
+        "Keeps the description criteria active",
+        "Prints Acceptance criteria before Summary"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Analyze this branch with a Jira ticket. The description requires CSV and JSON export. A later supplied comment records agreement to remove CSV from scope and require JSON Lines instead. Another comment asks whether XML might be useful someday.",
+      "expected_output": "The acceptance report evaluates JSON Lines as the active requirement, does not keep the withdrawn CSV requirement, and does not turn the unresolved XML idea into a requirement.",
+      "files": [],
+      "expectations": [
+        "Processes comments chronologically",
+        "Applies only clear requirement amendments",
+        "Does not report withdrawn criteria as active",
+        "Does not convert a question or unaccepted suggestion into a requirement",
+        "Prints Acceptance criteria before Summary"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Run change-analysis. The supplied jira.md only says that no Jira ticket reference was found and the review will run without ticket context.",
+      "expected_output": "The placeholder does not activate Jira acceptance verification. The report begins with Summary and otherwise follows the normal output contract.",
+      "files": [],
+      "expectations": [
+        "Does not print an Acceptance criteria section",
+        "Does not invent ticket requirements",
+        "Does not report missing Jira as a change-analysis limitation"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Analyze this branch with substantive Jira content that says only the 50 most recent of 120 comments were supplied. The available description and comments contain several requirements.",
+      "expected_output": "The report evaluates the available active requirements, starts with Acceptance criteria, and states that omitted comments can make the requirement set incomplete rather than claiming complete ticket alignment.",
+      "files": [],
+      "expectations": [
+        "Does not silently ignore the truncated comment history",
+        "Preserves useful results from the supplied ticket content",
+        "Does not claim that all active requirements are known",
+        "Prints a concise limitation inside Acceptance criteria"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Run change-analysis on the current branch. No Jira ticket content or Jira artifact is supplied.",
+      "expected_output": "The skill follows its original project-impact workflow and begins with Summary without mentioning Jira or acceptance criteria.",
+      "files": [],
+      "expectations": [
+        "Does not load or apply the Jira acceptance workflow",
+        "Does not print an Acceptance criteria section",
+        "Preserves the original Summary and Main changes output"
+      ]
+    }
+  ]
+}
