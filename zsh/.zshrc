@@ -5,6 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Homebrew (Linux, then macOS). Must run before tmux.zsh, which needs brew's tmux on PATH.
+for brew_bin in /home/linuxbrew/.linuxbrew/bin/brew /opt/homebrew/bin/brew; do
+  if [[ -x "$brew_bin" ]]; then
+    eval "$("$brew_bin" shellenv)"
+    break
+  fi
+done
+unset brew_bin
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -34,8 +43,6 @@ alias sstatus='sudo systemctl status'
 alias srestart='sudo systemctl restart'
 alias sstart='sudo systemctl start'
 alias sstop='sudo systemctl stop'
-alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim stable'
-alias update-asdf-plugins='asdf plugin update --all'
 
 # System (Debian/Ubuntu specific)
 alias pkgi='sudo apt-get install'

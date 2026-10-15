@@ -1,40 +1,17 @@
 echo "\n\033[0;33mInstalling packages\033[0m"
 sudo apt install unzip
 
-echo "Installing yazi"
-curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
-echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
-
-# Refresh only Yazi's repository and preserve other packages' cached indexes.
-sudo apt update \
-  -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/yazi.list \
-  -o Dir::Etc::sourceparts=- \
-  -o APT::Get::List-Cleanup=false && sudo apt install file yazi
-
-echo "Installing asdf plugins"
-echo "\n\033[0;33mInstalling asdf plugins\033[0m"
-asdf plugin add lazygit
-asdf install lazygit latest
-asdf global lazygit latest
-asdf plugin add ripgrep
-asdf install ripgrep latest
-asdf global ripgrep latest
-asdf global lazygit latest
-asdf plugin add fzf https://github.com/kompiro/asdf-fzf.git
-asdf install fzf latest
-asdf global fzf latest
-asdf plugin add bat
-asdf install bat latest
-asdf global bat latest
-asdf plugin add fd
-asdf install fd latest
-asdf global fd latest
-asdf plugin add eza
-asdf install eza latest
-asdf global eza latest
-asdf plugin add delta
-asdf install delta latest
-asdf global delta latest
-asdf plugin add bat-extras
-asdf install bat-extras latest
-asdf global bat-extras latest
+echo "\n\033[0;33mInstalling Homebrew packages\033[0m"
+brew install \
+  bat \
+  bat-extras \
+  eza \
+  fd \
+  fzf \
+  git-delta \
+  lazygit \
+  mdcat \
+  neovim \
+  ripgrep \
+  tmux \
+  yazi
