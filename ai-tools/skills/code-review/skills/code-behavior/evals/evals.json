@@ -1,0 +1,151 @@
+{
+  "skill_name": "code-behavior",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review a changed API mapper that now returns `accountId` from `row.user_id`, while the response contract and callers require the account ID from `row.account_id`.",
+      "expected_output": "A verified data-contract finding reports the concrete incorrect-response consequence at medium or higher impact and recommends mapping the required account field.",
+      "files": [],
+      "expectations": [
+        "Confirms the changed mapping against the response contract and callers",
+        "Reports the finding with a concrete impact",
+        "Returns it only after verification",
+        "Suggests an action that addresses the evidenced mapping error"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review a changed debug-only counter label that is misspelled but does not affect control flow, stored data, APIs, resource use, or operations.",
+      "expected_output": "The nitpick is not reported as a code-behavior finding.",
+      "files": [],
+      "expectations": [
+        "Classifies the candidate as `nit`",
+        "Drops the candidate before verification even when the observation is true",
+        "Does not include the candidate in the report"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A reviewer claims a changed array access can receive an empty array, but the only caller returns early when the array is empty and the type contract preserves that guard. Verify the proposed finding.",
+      "expected_output": "The contradicted candidate is rejected and does not appear in the report.",
+      "files": [],
+      "expectations": [
+        "Inspects the relevant caller and guard",
+        "Rejects the unsupported failure path",
+        "Does not include the candidate in the report"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Verify a valid finding where a changed async function leaks a file handle on its error path, but the proposed action says to increase the process file-descriptor limit.",
+      "expected_output": "The verified resource-leak finding remains, while the suggested action is corrected to close the acquired handle on every exit path.",
+      "files": [],
+      "expectations": [
+        "Preserves the valid finding",
+        "Rejects the mitigation that does not address the evidenced cause",
+        "Corrects the suggested action using the demonstrated ownership path"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Review a 24-file change split across two related services. One group contains an API contract producer and the other contains its consumer; both groups complete every selected pass.",
+      "expected_output": "Large-scope synthesis returns the complete candidate set, then one dedicated verifier reports only low-or-higher-impact findings using the same output rules as a normal review.",
+      "files": [],
+      "expectations": [
+        "Uses semantic groups and preserves the producer-consumer relationship",
+        "Reconciles every file and selected pass before synthesis",
+        "Sends the complete synthesized candidate set to one dedicated verifier",
+        "Reports only verified findings with low or higher impact"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Review a 24-file change where one semantic group's review subagent times out without returning results.",
+      "expected_output": "Findings from the other groups are verified and reported, the review is marked incomplete, and the timed-out group's files are recorded as not reviewed.",
+      "files": [],
+      "expectations": [
+        "Does not silently omit the unreviewed files",
+        "Reports the findings from the other groups",
+        "Marks the review incomplete without replacing the findings"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Review this branch only for missing tests around a newly added formatter.",
+      "expected_output": "The request is outside code-behavior because test-gap review is excluded.",
+      "files": [],
+      "expectations": [
+        "Does not run code-behavior passes for a test-gap-only request",
+        "Does not report missing tests as behavioral defects"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Review this branch before merge.",
+      "expected_output": "This is a boundary request. Code-behavior applies when the requested review concerns functional defects, contracts, or performance and resource risks, but it does not absorb change-summary, maintainability, security, or test-gap review.",
+      "files": [],
+      "expectations": [
+        "Recognizes that the meaning of review is ambiguous",
+        "Uses the skill only for its stated behavioral-defect scope",
+        "Does not absorb neighboring review responsibilities"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Review a change that adds item types to a shared list of shippable types. A consumer shows a tab and hides another tab based on item type alone, but the tab's content needs an `extra.warehouse` field that stored items of those types do not have.",
+      "expected_output": "A verified medium-impact finding reports that an existing tab disappears and the new tab shows an empty state for these items.",
+      "files": [],
+      "expectations": [
+        "Treats existing tab logic as newly reachable for the added types",
+        "Checks whether stored items carry the field the content needs",
+        "Classifies the lost working tab as medium impact",
+        "Does not drop the candidate as low impact"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Review a change where a detail panel title now reads `Billing address` for shipping address records. Every field in the panel is correct, and no flow, API, or stored data changes.",
+      "expected_output": "A verified low-impact finding reports the wrong title and suggests the correct label.",
+      "files": [],
+      "expectations": [
+        "Classifies the wrong title as `low`, not `nit`",
+        "Sends the candidate to the verifier",
+        "Includes the low finding in the report after verification"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Review a change where new code reads an `extra.warehouse` field from stored items. The reviewer cannot check whether stored items carry that field.",
+      "expected_output": "The reviewer proposes the candidate with its best impact, names the data to check, and sends it to the verifier.",
+      "files": [],
+      "expectations": [
+        "Does not drop the candidate because reachability is unconfirmed",
+        "Names the stored data to check",
+        "Sends the candidate to the verifier"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Run code-behavior with output=json. The reviewer proposes one medium-impact finding and one low-impact finding, and the verifier times out.",
+      "expected_output": "The final JSON keeps the medium finding as proposed, omits the low finding, and sets complete to false.",
+      "files": [],
+      "expectations": [
+        "Keeps the medium finding as proposed",
+        "Does not report the unverified low finding",
+        "Sets complete to false"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Review a 24-file change split into two semantic groups. Each group's reviewer returns one medium-impact finding, then the synthesis subagent times out. The verifier confirms both findings.",
+      "expected_output": "Both group findings go to the dedicated verifier instead of being dropped; the report contains the two confirmed findings and is marked incomplete because synthesis failed.",
+      "files": [],
+      "expectations": [
+        "Sends the combined group findings to the verifier",
+        "Does not drop either group's finding",
+        "Reports both confirmed findings",
+        "Marks the review incomplete and names the failed synthesis"
+      ]
+    }
+  ]
+}

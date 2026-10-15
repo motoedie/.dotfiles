@@ -1,0 +1,218 @@
+{
+  "skill_name": "skillsmith",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a portable Agent Skill that helps coding agents diagnose flaky integration tests. Keep it efficient enough for frequent use.",
+      "expected_output": "The skill triggers, defaults to a portable target and normal effort, checks whether a skill is the right artifact, defines triggering and execution behavior, creates only justified resources, validates the result, and reports measured estimates without claiming an unrun benchmark.",
+      "files": [],
+      "expectations": [
+        "Reads writing-for-agents and SKILL-MECHANICS.md before designing the skill and applies the full writing guide",
+        "Defaults to portable rather than introducing one vendor's metadata",
+        "Defines should-trigger and must-not-trigger cases before optimizing the description",
+        "Keeps generic testing knowledge out of the final skill",
+        "Uses conditional references or deterministic scripts only when their benefit is concrete",
+        "Does not claim behavioral parity or token savings without evidence"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "This deployment skill has become huge after several incidents. Audit it, reduce its token cost, and benchmark the result against the current version. Preserve every proven safety boundary.",
+      "expected_output": "The skill triggers in benchmark mode but treats the existing deployment skill as report-only until approval. It traverses the complete package, inventories every feature including conditional modes, measures context costs, compares isolated baseline/current/candidate behavior, and reports proposed changes and ablation evidence without editing the source skill. It asks for approval before applying named findings.",
+      "files": [],
+      "expectations": [
+        "Reads both writing-for-agents documents and applies their guidance when auditing instructions, including in benchmark mode",
+        "Does not edit the existing skill before presenting findings and receiving approval",
+        "Traverses all transitively referenced resources and inventories conditional behavior",
+        "Measures discovery, activation, and loaded conditional costs separately",
+        "Runs equivalent cases against current and candidate variants",
+        "Ablates one coherent instruction unit at a time in isolation",
+        "Does not treat a passing ablation or token reduction as authorization to remove behavior",
+        "Asks for approval of named proposals"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Rewrite this one-off system prompt so it sounds friendlier.",
+      "expected_output": "The skill does not trigger because the request is ordinary prompt editing rather than creating, auditing, optimizing, or testing an Agent Skill.",
+      "files": [],
+      "expectations": [
+        "Does not route ordinary prompt editing through skillsmith"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our Cursor agent keeps mishandling database migrations. Make its guidance more reliable and less wasteful.",
+      "expected_output": "This is a boundary request. The skill applies if the guidance is or will become an Agent Skill; otherwise it should not force the work into a skill and should consider repository instructions, a rule, or another artifact.",
+      "files": [],
+      "expectations": [
+        "Recognizes that the requested artifact is ambiguous",
+        "Does not assume every reusable agent instruction belongs in an Agent Skill",
+        "Uses the Cursor target only if the resulting artifact is a skill and platform-specific behavior provides concrete value"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Optimize the existing code-quality Agent Skill. It is too long, so simplify it and remove anything that seems unnecessary.",
+      "expected_output": "The skill does not edit code-quality. It traverses the complete package and discovers that references/large-scope.md is conditionally activated above the file or changed-line threshold. The feature inventory records grouped review, per-group agents, cross-group summaries, and final synthesis as scalability behavior. Any reorganization is proposed without changing those behaviors, and the report asks for approval before edits.",
+      "files": [],
+      "expectations": [
+        "Produces a findings report without editing code-quality",
+        "Reads conditionally routed resources even when the immediate example is small",
+        "Records the large-scope threshold and grouped workflow as intentional features",
+        "Preserves group construction, per-group review, cross-group context, and synthesis",
+        "Does not infer that conditional or untested behavior is unnecessary",
+        "Treats writing-for-agents pruning advice as recommendations subject to Skillsmith's existing evidence and approval rules",
+        "Treats reorganization as an approval-gated edit",
+        "Asks for explicit approval of named proposals"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Create a portable Agent Skill that drafts release notes from a supplied git diff.",
+      "expected_output": "The skill is created without an artificial iteration limit or separate completion checklist. Producing the requested release-note draft is the workflow's obvious natural endpoint.",
+      "files": [],
+      "expectations": [
+        "Uses completion of the requested release-note draft as the natural endpoint",
+        "Keeps obvious completion conditions implicit when applying writing-for-agents",
+        "Does not add arbitrary retry counts, time limits, or stop criteria"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Create an Agent Skill that repeatedly investigates a flaky integration test, trying new hypotheses until it finds the cause.",
+      "expected_output": "Because investigation could iterate indefinitely and consume substantial time or tokens, the resulting skill defines a proportional stop condition or bounded investigation budget and reports the best evidence when the bound is reached.",
+      "files": [],
+      "expectations": [
+        "Recognizes the risk of unbounded iterative investigation",
+        "Adds a proportional completion or stop criterion",
+        "Preserves useful evidence and reports an unresolved result when the bound is reached"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Create a skill that repeatedly converts large newline-delimited JSON logs into a normalized index using a fixed mapping, stable sort order, and exact validation rules. The agent currently performs every conversion itself.",
+      "expected_output": "Skillsmith recognizes a strong automation candidate and puts the mechanical parsing, mapping, validation, and sorting into a script with explicit input, output, and failure contracts. The skill invokes the script instead of recreating the transformation in model context.",
+      "files": [],
+      "expectations": [
+        "Identifies the stable large-input transformation as an automation candidate",
+        "Defines explicit input, output, ordering, validation, and failure behavior",
+        "Keeps the generated data out of model context when an artifact path is sufficient",
+        "Tests valid, empty, invalid, and large inputs"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Create a skill that reviews unfamiliar application architecture and decides whether responsibilities belong in existing modules or a new boundary.",
+      "expected_output": "Skillsmith keeps the architectural interpretation and boundary decision with the agent because they depend on repository semantics and contextual judgment. It does not create a script merely because the review follows several steps.",
+      "files": [],
+      "expectations": [
+        "Distinguishes a repeatable checklist from a deterministic transformation",
+        "Does not encode architectural judgment as a script",
+        "Allows a no-suitable-candidate result"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Improve an existing API-review skill. The agent must identify which changed files define API endpoints, then repeatedly parses those files, validates fixed schema rules, counts violations, and reasons about the resulting failures.",
+      "expected_output": "Skillsmith reports a hybrid extraction proposal without editing the existing skill. The agent retains contextual endpoint-file selection and interpretation; an approved script would accept the selected paths, perform deterministic parsing and validation, and return bounded structured results for the agent to reason about.",
+      "files": [],
+      "expectations": [
+        "Does not edit the existing skill before approval",
+        "Keeps contextual file selection and finding interpretation with the agent",
+        "Moves only deterministic parsing, validation, and counting into the proposed script",
+        "Defines a concise structured handoff back to the agent",
+        "Preserves authorization and failure behavior"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Audit an existing two-file Agent Skill and optimize anything you find. One file is SKILL.md and the other is a conditionally invoked shell script.",
+      "expected_output": "Skillsmith remains report-only, deterministically inventories both files, traces the indirect script route, inventories every feature, records a result for every Skillsmith optimization check, and asks for approval of named proposals. It does not treat two files as permission for informal or sampled inspection.",
+      "files": [],
+      "expectations": [
+        "Accounts for every package file in the package ledger",
+        "Recognizes indirect script invocation rather than relying only on Markdown links",
+        "Records all ten Skillsmith check results",
+        "Maps proposals to feature identifiers",
+        "Does not edit before approval"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Audit an existing Agent Skill package containing SKILL.md plus nineteen references, scripts, eval files, and assets. Several uncommon modes are routed through nested references.",
+      "expected_output": "Skillsmith enumerates all twenty files, follows the complete resource graph, uses recorded batches if needed without sampling, reconciles every batch against the original ledger, and reports inaccessible or uncovered behavior as incomplete.",
+      "files": [],
+      "expectations": [
+        "Enumerates all twenty files before semantic conclusions",
+        "Traverses nested and conditional routes",
+        "Preserves file paths, feature IDs, thresholds, and unresolved dependencies across batches",
+        "Reconciles the final coverage ledger with the original manifest",
+        "Never claims completion with an unaccounted file or feature"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Create a code-analysis skill that may inspect anywhere from two files to hundreds of files while preserving caller, helper, and shared-type relationships.",
+      "expected_output": "Skillsmith designs the user-skill with the complete scalable pipeline for every input size. It enumerates scope, forms semantic work units that keep coupled files together, analyzes every unit with one schema, reconciles coverage, performs cross-unit synthesis, and reports partial failure without silently dropping files. Two files may form one unit; their count does not bypass coverage accounting.",
+      "files": [],
+      "expectations": [
+        "Applies the large-input feature from the first variable-size input",
+        "Does not use a vague manageability decision or universal file-count threshold",
+        "Keeps related callers, helpers, and shared types in the same semantic unit",
+        "Requires exhaustive manifest and check coverage",
+        "Requires cross-unit synthesis and explicit incomplete-result behavior"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Create an analysis skill for two enormous generated files. Parsing and symbol indexing are mechanical, but interpreting architectural violations requires judgment, and one file may exceed the host tool's output limit.",
+      "expected_output": "Skillsmith combines deterministic preprocessing with judgment-led analysis. The script returns bounded structured parsing and symbol data; an oversized item is divided at an explicit domain boundary only after a real limit or truncation signal, shared context is repeated, and final synthesis verifies the original two-item manifest.",
+      "files": [],
+      "expectations": [
+        "Treats one oversized item as a large-input concern even with only two files",
+        "Extracts only deterministic parsing and indexing",
+        "Does not encode architectural judgment in the script",
+        "Subdivides on a known limit or observed truncation rather than an invented threshold",
+        "Verifies coverage against the original manifest after hierarchical synthesis"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Audit an existing review skill where rules.md defines a behavioral rule, workflow.md restates its exception, and a checker plus tests assert the same behavior.",
+      "expected_output": "Skillsmith reports the instruction scatter without editing. It proposes one instruction file containing the complete rule and exception, leaves only routing in the other instruction file, preserves the checker and tests, and asks for approval.",
+      "files": [],
+      "expectations": [
+        "Treats the split rule and exception as one scattered behavioral rule",
+        "Proposes exactly one instruction owner without inventing rule IDs",
+        "Does not treat the checker or tests as instruction definitions",
+        "Preserves behavior and waits for approval before editing"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Use fast effort to test an existing Agent Skill's instructions for clarity and organization. Report the results without changing the skill.",
+      "expected_output": "Skillsmith reads writing-for-agents and SKILL-MECHANICS.md before testing the instructions, applies the full writing guide, performs the fast static and semantic checks, and reports recommendations without changing the skill. Skillsmith's behavior-preservation, approval, validation, and natural-endpoint rules govern any conflicting advice.",
+      "files": [],
+      "expectations": [
+        "Loads both writing-guide documents for a test operation even in fast effort",
+        "Applies the guide to evaluate instructions rather than loading it only when writing new text",
+        "Preserves Skillsmith's fast evaluation workflow and conflict precedence",
+        "Reports pruning recommendations without editing the existing skill"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Audit an existing skill containing SKILL.md, a Python helper, a binary asset, and a link to a missing guide in a sibling skill folder. Report the audit without changing files.",
+      "expected_output": "Skillsmith uses the analyzer's JSON package inventory to account for the source and asset files, reports the missing sibling guide as a broken dependency, and inspects each file according to its role. It does not treat text_analysis or a file listing as proof of completed semantic review, invent a substitute guide, or edit the skill.",
+      "files": [],
+      "expectations": [
+        "Uses package_files and records excluded_paths when Python is available",
+        "Accounts for source files and binary assets even though they do not participate in document text analysis",
+        "Reports missing sibling dependencies and keeps their cost distinct from readable referenced documents",
+        "Inspects file roles and behavior independently of the deterministic inventory",
+        "Remains report-only and preserves the existing approval workflow"
+      ]
+    }
+  ]
+}

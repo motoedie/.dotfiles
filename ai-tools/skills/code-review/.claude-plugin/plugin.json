@@ -1,0 +1,9 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "motoedie-code-review",
+  "version": "0.2.0",
+  "description": "Code review skills: change analysis, behavior, quality, security, SQL health, and test gaps.",
+  "author": {
+    "name": "Ladislav Starek"
+  }
+}

@@ -14,8 +14,8 @@ Needs `node` on `PATH`.
 
 ```bash
 npm --prefix ~/.dotfiles/ai-tools/mods/mermaid-render/renderer ci
-claude plugin marketplace add ~/.dotfiles/ai-tools
-claude plugin install mermaid-render@ai-tools
+claude plugin marketplace add ~/.dotfiles
+claude plugin install mermaid-render@motoedie
 ```
 
 The marketplace is a local folder, so Claude reads the mod from here. After an edit, run `/reload-plugins`.

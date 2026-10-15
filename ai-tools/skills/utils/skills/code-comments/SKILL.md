@@ -11,8 +11,9 @@ If `$ARGUMENTS` is empty, focus on the code most recently modified in the curren
 
 ## Style
 
-- Prefer comments that explain intent over comments that restate syntax.
-- Place one short comment before a compact non-obvious block, such as an `if` branch, early return, or transformation step.
+- Prefer comments that explain intent over comments that restate syntax. When in doubt, prefer explaining *why* over *what* — the code already shows what; the reason it's written this way usually isn't visible.
+- Write comments in plain English — no jargon, no assumed context. A reader unfamiliar with this part of the codebase should be able to understand the comment without looking anything up.
+- Place one short comment before a compact non-obvious block, such as an `if` branch, early return, or transformation step. For early returns and skip conditions, explain what would go wrong without them — not just what category the value or case falls into.
 - Split longer functions into phases and comment each phase instead of commenting every line.
 - Explain why a block exists, what invariant it preserves, what side effect it triggers, or why a branch is special.
 - Comment embedded shell, SQL, or multi-step string scripts by phase when the sequence is important.
@@ -36,7 +37,7 @@ If `$ARGUMENTS` is empty, focus on the code most recently modified in the curren
 
 ## Heuristics
 
-- Good comment: explain why filtered exports must keep the original snapshot id in the final package.
+- Good comment: explain why a filtered report must keep the original report id in the final file.
 - Weak comment: explain that `p1` is set to `-1` when `systemLogs` is true.
 - Good comment: describe that a temp directory isolates an unpacked export before repackaging.
 - Weak comment: describe that `fs.ensureDir()` creates a directory.

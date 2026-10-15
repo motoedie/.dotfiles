@@ -1,0 +1,9 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "motoedie-utils",
+  "version": "0.2.0",
+  "description": "General dev skills: terse replies, code comments, git conflict resolution, implementation plans, TDD, and skill authoring.",
+  "author": {
+    "name": "Ladislav Starek"
+  }
+}
