@@ -1,0 +1,8 @@
+{
+  "name": "mermaid-render-renderer",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "beautiful-mermaid": "1.1.3"
+  }
+}

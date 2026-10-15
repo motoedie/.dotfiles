@@ -1,0 +1,6 @@
+{
+  "name": "mermaid-render",
+  "version": "0.1.0",
+  "description": "Draws ```mermaid blocks in Claude's replies as diagrams: SVG on desktop, ASCII art in the terminal.",
+  "author": { "name": "Ladislav Starek" }
+}
