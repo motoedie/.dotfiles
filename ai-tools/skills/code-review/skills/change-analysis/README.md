@@ -1,7 +1,8 @@
 # Change analysis
 
-Report-only summary of what a branch changes and how those changes affect the
-system, users, workflows, contracts, compatibility, or operations. It is meant
+Report-only summary of the problem a branch answers, what it changes, and how
+those changes affect the system, users, workflows, contracts, compatibility, or
+operations — including features the branch never edited. It is meant
 to give a human reviewer useful project context without exposing file
 inventories or the agent's internal analysis.
 
@@ -26,20 +27,33 @@ The report contains:
 - **Acceptance criteria** — included first only when substantive Jira content is
   supplied. It checks requirements from the full description and supplied
   comments against the branch.
+- **Background** — how the system behaved before and what that lacked, in one
+  or two sentences.
 - **Summary** — the overall behavior change and its main impact, in at most
   three sentences.
+- **Touchpoints** — where a user, operator, or integration meets the change (UI
+  path, API endpoint, CLI command, job, discovery task), or `Internal only`.
 - **Flows** — one Mermaid flowchart per distinct flow the change implements,
   where a trigger leads through steps to an outcome. Each is named ("Flow A —
   MR note posting") with a one-sentence trigger → outcome line, and the rest of
   the report refers to flows by name. Omitted when the change implements no
   flow.
+- **New concepts** — new entities, states, or terms, with an entity or state
+  diagram when they relate. Omitted when the change adds none.
+- **Example** — one input with its output before and after, using fictitious
+  values. Omitted when no observable input or output changes.
 - **Main changes** — at most five project-level topics explaining what changed
   and the concrete effect of each change.
+- **Downstream effects** — unchanged features that now behave differently
+  because they consume something the branch changed, or a one-line "none found".
+- **Judgment calls** — behavior the developer chose (edge cases, errors,
+  skipped data, defaults) stated as facts for the reviewer to agree with, not as
+  defects. Omitted when there are none.
 - **Open questions** — included only when product or operational intent cannot
   be established from the repository.
 - **Limitations** — included only when incomplete analysis weakens a conclusion.
 
-The report is deliberately short — roughly 400 words of prose plus diagrams. A
+The report is deliberately short — roughly 700 words of prose plus diagrams and the example. A
 reviewer reads it once before opening the diff, so it favours consequences over
 mechanism and does not enumerate configuration keys, defaults or file paths.
 
