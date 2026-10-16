@@ -37,7 +37,9 @@
       "expectations": [
         "Does not force multiple units for a small change",
         "Does not manufacture a review target or open question",
-        "Does not print internal scope or coverage bookkeeping"
+        "Does not print internal scope or coverage bookkeeping",
+        "Writes Touchpoints as `Internal only`",
+        "Omits New concepts, Example, and Judgment calls because none apply"
       ]
     },
     {
@@ -48,7 +50,8 @@
       "expectations": [
         "Does not expose internal Observed or Unresolved labels",
         "Does not infer product intent from the new constant",
-        "Names the product decision and the behavior that depends on it"
+        "Names the product decision and the behavior that depends on it",
+        "Reports the retention default once, under Open questions, and not again under Judgment calls"
       ]
     },
     {
@@ -93,7 +96,9 @@
         "Does not mention semantic units or cross-unit relationships",
         "Does not provide a reviewer reading route",
         "Does not output scope or coverage when analysis completed",
-        "Does not repeat the summary verbatim in Main changes"
+        "Does not repeat the summary verbatim in Main changes",
+        "Lists New concepts for reserved system labels and override assignments",
+        "Reports tables, graphs, and path lookup as Downstream effects only where they are unchanged consumers; consumers the branch edits stay in Main changes"
       ]
     },
     {
@@ -168,6 +173,53 @@
         "Does not load or apply the Jira acceptance workflow",
         "Does not print an Acceptance criteria section",
         "Preserves the original Summary and Main changes output"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Run change-analysis on a branch that changes only the ARP parser for one vendor so that it now drops entries with incomplete MAC addresses. Path lookup, the diagram builder, and the ARP table all read the parsed ARP data and are not edited.",
+      "expected_output": "The report explains the parser change, then lists Downstream effects naming the ARP table, path lookup, and diagram behavior that changes because those features consume the parsed data, and records the dropped-entry choice as a Judgment call.",
+      "files": [],
+      "expectations": [
+        "Searches for unchanged consumers of the parsed ARP data",
+        "Names each affected consumer and how its behavior changes",
+        "States dropping incomplete entries as a Judgment call with its consequence, not as a defect",
+        "Gives a Background sentence on how incomplete entries were handled before"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Run change-analysis on a branch that adds a new API filter to a device table endpoint and a matching control on the inventory page. The changed test fixtures contain realistic hostnames and IP addresses.",
+      "expected_output": "Touchpoints name the exact UI path and API method and path. The Example shows a request or table row before and after using fictitious values, not the fixture's hostnames or addresses.",
+      "files": [],
+      "expectations": [
+        "Names the exact UI path and API endpoint in Touchpoints",
+        "Gives exactly one Example with input, output before, and output after",
+        "Replaces fixture hostnames and IP addresses with fictitious values such as 192.0.2.0/24 and router-1",
+        "Does not repeat the Example in Main changes"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Run change-analysis on a branch that introduces a scheduled export job with new entities ExportJob, ExportTarget, and ExportRun, where each run moves through queued, running, succeeded, and failed states.",
+      "expected_output": "New concepts names the three entities with one line each, adds an erDiagram for their relations and a stateDiagram-v2 for the run lifecycle, and Flows covers the scheduled trigger.",
+      "files": [],
+      "expectations": [
+        "Defines each new entity in one line",
+        "Adds a Mermaid erDiagram for the related entities",
+        "Adds a Mermaid stateDiagram-v2 for the run lifecycle",
+        "Keeps the flow diagram and the concept diagrams distinct"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Run change-analysis on a branch that renames an internal helper and moves it to a shared package. All callers are updated in the same branch.",
+      "expected_output": "Touchpoints is `Internal only`, Downstream effects says no downstream behavior changes were found, and Example and Judgment calls are omitted.",
+      "files": [],
+      "expectations": [
+        "Treats callers edited by the branch as direct changes, not downstream effects",
+        "Prints `No downstream behavior changes found.`",
+        "Omits Example because no observable output changes"
       ]
     }
   ]

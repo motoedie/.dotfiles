@@ -1,6 +1,6 @@
 {
   "name": "motoedie-code-review",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "Code review skills: change analysis, behavior, quality, security, SQL health, and test gaps.",
   "author": {
     "name": "Ladislav Starek"

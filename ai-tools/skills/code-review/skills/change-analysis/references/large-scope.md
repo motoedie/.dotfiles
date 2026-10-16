@@ -15,8 +15,8 @@ Use each changed path as a stable file ID. For every file, record:
   reason; and
 - analysis status.
 
-Define the analysis expected for every semantic unit: outcome, before and after,
-flow, contracts and invariants, dependencies, evidence, and claim status.
+Every semantic unit receives the full step 3 analysis from `SKILL.md`, and
+every contract it alters receives the step 4 downstream trace.
 
 ## 2. Form bounded semantic units
 
@@ -36,9 +36,8 @@ Each unit result records:
 
 - unit ID and purpose;
 - included file IDs;
-- completed analysis dimensions;
-- before-and-after behavior and flow;
-- contracts, dependencies, evidence, and claim status;
+- completed step 3 analysis dimensions;
+- altered contracts with each consumer's step 4 classification;
 - cross-unit concerns; and
 - `Complete` or `Incomplete` status with exact gaps.
 
@@ -54,7 +53,8 @@ unit must contain all required analysis dimensions.
 
 Pass the resolved scope unchanged into synthesis. Synthesize unit results around
 the end-to-end behavior. Deduplicate repeated facts, resolve cross-unit flows and
-contracts, and reopen primary evidence from the selected content source when a
+contracts, reclassify a consumer one unit reports as downstream when another unit
+changes it directly, and reopen primary evidence from the selected content source when a
 unit summary is insufficient. If synthesis itself reaches an observed limit,
 combine related unit summaries hierarchically and repeat the same reconciliation.
 
