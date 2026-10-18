@@ -1,27 +1,27 @@
 # Test-Gap Verification
 
-Independently verify every proposed gap against the selected change, cited
-evidence, relevant source, and existing tests.
+Independently apply [finding-criteria.md](finding-criteria.md) and the
+[test-gap checks](../passes/test-gaps.md) to every proposed gap and weak test.
+Inspect the selected change, cited evidence, relevant source,
+and existing tests, searching for coverage the reviewer may have missed.
 
-For each gap:
+Give each item exactly one verdict:
 
-- confirm that the selected addition, fix, or refactor implements or can affect
-  the stated behavior;
-- inspect the closest relevant tests and confirm they do not already exercise
-  and assert that behavior;
-- reassess impact under `output-format.md`, correct inflated labels, and reject
-  low-impact gaps by default even when the coverage absence is real;
-- confirm that the suggested level is appropriate and that the suggested test
-  exercises the affected behavior through a stable interface and asserts an
-  observable result. Filter out suggestions that only mirror implementation,
-  check internal call order, or add execution without a behavioral assertion;
-  when the gap is otherwise valid, correct the suggestion instead of rejecting
-  the gap; and
-- reject unsupported or contradicted gaps and merge overlapping cases.
+- `confirmed`: it meets the criteria and the scope's impact threshold.
+  Reassess impact, correcting inflated or deflated labels. Correct a valid
+  gap's suggestion instead of rejecting it when its level, assertions, or
+  mocking fail the criteria.
+- `merged into <gap>`: it covers the same behavior as another gap; fold a weak
+  test into a gap on that behavior when one exists.
+- `rejected`: it fails a criterion or the impact threshold. Name the failed
+  check and the counterevidence or missing evidence.
 
-Give every gap exactly one verdict: `confirmed`, with any corrections; `merged
-into <gap>`; or `rejected`, with the failed check and the counterevidence or
-missing evidence. Return every verdict, with confirmed gaps in
-`output-format.md`. Leave out a gap you could not decide before a tool, context,
-or time limit stopped you. Do not search for new gaps, rerun the review, edit
-files, or modify the Git index.
+For a weak test, confirm that it is in scope, implies protection of a behavior
+at or above the impact threshold, and protects none of it. If it protects part,
+reject the weak-test finding and keep or propose the missing scenario as a gap.
+
+Return every verdict, with confirmed items in
+[report-format.md](report-format.md). Leave out an item you could not decide
+before a tool, context, or time limit stopped you. Do not search for new gaps
+beyond a rejected partial test's missing scenario, rerun the review, edit files,
+or modify the Git index.

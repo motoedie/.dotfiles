@@ -1,0 +1,87 @@
+{
+  "skill_name": "test-gaps",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review a change that only adds `export` to an existing type and an existing helper function so another module can import them. No logic, data shape, or call site behavior changes.",
+      "expected_output": "No test gap is reported; the report states `None found`.",
+      "files": [],
+      "expectations": [
+        "Finds no realistic mutant that changes observable behavior",
+        "Does not suggest a test that checks the export or type exists",
+        "Reports `None found` for test gaps"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run with `impact=medium`. Review a change to a frontend search panel. A changed Vitest test checks that typing a term sends the search request with the correct `term` and `limit` arguments. The change also makes the results reload when the user flips an `Include archived` toggle, and no test flips the toggle.",
+      "expected_output": "The existing search test is kept as a partial test. A gap is reported for the toggle-driven reload, citing the partial test as evidence and suggesting a new scenario that flips the toggle and asserts a new request with the archived flag.",
+      "files": [],
+      "expectations": [
+        "Does not report the existing search test as a weak test or recommend deleting it",
+        "Reports the toggle-driven reload as a gap with a named mutant, such as the toggle no longer triggering a reload",
+        "Cites the existing search test in the gap's evidence",
+        "Suggests a scenario or stronger assertion on the reload request"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Run with `impact=medium`. Review a change that adds toggle-driven reloading to a results table through a new `useArchivedReload` hook. The added component test mocks `useArchivedReload` and asserts that the mock was called with `true` after the toggle is clicked. No other test exercises the hook.",
+      "expected_output": "A gap is reported for the toggle-driven reload, because the test mocks away the behavior under review. The mock-asserting test is folded into that gap's evidence rather than reported separately.",
+      "files": [],
+      "expectations": [
+        "Recognizes that the mocked hook carries the behavior under review",
+        "Reports the reload as a gap at medium or higher impact",
+        "Folds the mock-asserting test into the gap's evidence instead of a separate weak test",
+        "Suggests a test that keeps the hook real and mocks only the network boundary"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review a change where a page now builds its export URL with the shared `buildQueryString` helper instead of manual string concatenation. `buildQueryString` has its own unit tests covering encoding of spaces, `&`, and Unicode values. The page has no test of its own.",
+      "expected_output": "No gap is reported for query-string encoding, because the shared helper's tests already cover it. Any reported gap concerns only page-specific behavior that those tests cannot cover.",
+      "files": [],
+      "expectations": [
+        "Searches tests of shared helpers that the change calls",
+        "Credits the `buildQueryString` tests as existing coverage for encoding",
+        "Does not report an encoding gap for the page"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Run with `impact=medium`. Review a change to a settings form that calls `onSaved()` with no arguments after the save request succeeds and does not call it when the request fails. The parent closes the dialog on `onSaved()`. No test covers either path.",
+      "expected_output": "A gap is reported whose suggested test asserts that `onSaved()` is called after a successful save and is not called after a failed one.",
+      "files": [],
+      "expectations": [
+        "Treats the no-argument `onSaved()` call as the observable completion contract",
+        "Does not reject the suggestion as a call assertion without checked arguments",
+        "Names a mutant such as `onSaved()` firing on failure or never firing"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Run with `impact=medium`. Review a change to device-list row mapping. For a present site, the changed mapper reads `row.site.name`; for a null site, it returns the established consumer display value `Unassigned`. Existing tests cover only non-null sites; no unit test, Storybook interaction, integration test, or E2E test covers null-site handling. Case A: the TypeScript type declares `site` as non-null, but the response is not validated at runtime and the OAS permits `site:null`. Case B: the same mapper, but an upstream zod schema rejects null or missing `site` on every path before the mapper runs, and existing tests enforce that rejection.",
+      "expected_output": "In case A a medium-impact gap is reported for the reachable null-site display contract, with a named mutant and a suggested test asserting `Unassigned`. Existing non-null tests are retained as partial coverage. In case B no null-site mapper gap is reported because the enforced zod validation excludes that input.",
+      "files": [],
+      "expectations": [
+        "Does not treat the TypeScript type alone as proof that `site` cannot be null",
+        "Cites the nullable OAS field as the real source of the input in case A",
+        "Reports a medium-impact gap in case A with a named mutant and a suggested test asserting the established `Unassigned` display value",
+        "Retains the existing non-null tests as partial coverage rather than recommending their deletion",
+        "Rejects the edge case in case B only because of the enforced zod validation",
+        "Words test outcomes as expected unless tests were run"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Review a change that resizes a `Calculate` link from `text-xs` to `text-sm`. The added test asserts that the link has class `text-sm` and not `text-xs`. Behavior, data, and requests are unchanged.",
+      "expected_output": "No test gap and no weak test are reported. The styling change carries no mutant a consumer would notice, and the class test implies only cosmetic behavior below the impact threshold.",
+      "files": [],
+      "expectations": [
+        "Does not suggest any test that asserts CSS classes",
+        "Does not report the class-name test as a weak test",
+        "Reports `None found` for test gaps"
+      ]
+    }
+  ]
+}

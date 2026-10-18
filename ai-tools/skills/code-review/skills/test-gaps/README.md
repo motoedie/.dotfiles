@@ -14,14 +14,19 @@ the reviewed change.
 | `test-gaps base release/8.2` | Checked-out branch compared with another base |
 | `test-gaps services/api/` | Selected changes limited to a path |
 | `test-gaps <revision range>` | Exact committed changes in that range |
+| `test-gaps impact=medium` | Also report medium-impact gaps |
 
 ## What it produces
 
 The report contains:
 
-- **Scope reviewed** — the selected change and files examined.
-- **Test Gaps** — verified critical-, high-, and medium-impact gaps with
-  behavior, evidence, test level, and a concrete suggested test.
+- **Scope reviewed** — the selected change, files examined, and impact threshold.
+- **Test Gaps** — verified critical- and high-impact gaps (plus medium with
+  `impact=medium`), each with behavior, the mutant current tests are expected
+  to survive, evidence, test level, and a concrete suggested test.
+- **Weak Tests** — added or changed tests that imply they protect an important
+  behavior but do not, with a rewrite or delete recommendation. Tests that
+  protect part of a behavior are kept; their missing scenario becomes a gap.
 - **Limitations** — uncertainty, scope that could not be reviewed, or any model
   fallback.
 
@@ -33,9 +38,15 @@ verifier checks proposed gaps. There is no separate large-review mode.
 Use test gaps to find missing behavior-focused coverage before merge. Use a
 test-writing or TDD workflow when the request is to implement the tests.
 
-Low-impact gaps and suggestions that only test implementation details are
-filtered by default. Missing coverage around refactored behavior remains
-eligible when an unnoticed behavioral mistake could have meaningful impact.
+A gap is reported only when the reviewer names a realistic wrong edit (a
+mutant) that current tests, including stories and shared-helper tests, are
+expected to survive, and suggests an observable test expected to go red on it.
+Cosmetic assertions (styling, fixed copy, config shapes, mocked-child props,
+export checks) never count; the same assertion forms count when they protect a
+named interaction or contract. Refactors that change logic remain eligible;
+moves and renames do not.
+
+Behavior evals live in [evals/evals.json](evals/evals.json).
 
 Security-specific test gaps belong to security review; general behavioral
 defects belong to code-behavior review.
@@ -44,5 +55,6 @@ defects belong to code-behavior review.
 
 - [Agent instructions](SKILL.md)
 - [Scope arguments](references/arguments.md)
-- [Test-gap criteria](passes/test-gaps.md)
-- [Output format](references/output-format.md)
+- [Test-gap checks](passes/test-gaps.md)
+- [Finding criteria](references/finding-criteria.md)
+- [Output format](references/report-format.md)
