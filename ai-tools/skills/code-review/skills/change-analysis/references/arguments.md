@@ -11,6 +11,9 @@ analysis scope.
   supplied ref
 - `<revision>` or `<revision range>` — analyze exactly those committed changes
 - `<paths>` — limit analysis to specific files or directories
+- a request for manual testing, in any wording ("test steps", "how do I test
+  this?") — run the same analysis but print only test flows, per
+  [the test-flow format](test-flows.md); combines with any scope
 
 Resolve one scope before building the manifest. Record its comparison baseline,
 selected content source, and path filters, then pass that resolved scope

@@ -16,6 +16,7 @@ inventories or the agent's internal analysis.
 | `/change-analysis staged` | Staged changes only |
 | `/change-analysis base release/8.2` | Checked-out branch compared with another base branch |
 | `/change-analysis services/api/` | Changes limited to one file or directory |
+| `/change-analysis how do I test this?` | Manual test flows to run in the product, in place of the report; any wording works and combines with any scope |
 
 The default baseline is the merge base against `main` or `master`, falling back
 to the default remote branch.

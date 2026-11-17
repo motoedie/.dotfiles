@@ -172,7 +172,8 @@
       "expectations": [
         "Does not load or apply the Jira acceptance workflow",
         "Does not print an Acceptance criteria section",
-        "Preserves the original Summary and Main changes output"
+        "Preserves the original Summary and Main changes output",
+        "Does not print test flows unless the user asks for manual testing"
       ]
     },
     {
@@ -220,6 +221,30 @@
         "Treats callers edited by the branch as direct changes, not downstream effects",
         "Prints `No downstream behavior changes found.`",
         "Omits Example because no observable output changes"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "Run /change-analysis test steps on a branch that adds an Endpoint policies settings page behind a feature flag. Built-in policies are read-only, and the role grant must keep working when the flag is off.",
+      "expected_output": "Only test flows: a Setup line with the flag state and a non-admin user for the permission check, then at most six numbered flows with exact UI paths and expected results, the flag-off flow last.",
+      "files": [],
+      "expectations": [
+        "Prints test flows in place of the normal report",
+        "Explains why the permission check needs a non-admin user",
+        "Ends every flow on what the tester should see",
+        "Puts the flag-off flow last and restores the flag",
+        "Takes menu and button labels from routes and UI strings and marks any it cannot confirm as (unconfirmed)",
+        "Includes a flow for a screen that reads the new data without being edited, such as the policies list"
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Run change-analysis on a branch that only refactors the internal caching helper that the device inventory table reads from, and tell me how I would check it by hand.",
+      "expected_output": "Flows for every part of the UI that the changed caching helper affects, starting with the device inventory table.",
+      "files": [],
+      "expectations": [
+        "Treats the free-form request as a test-flow request",
+        "Tests every part of the UI that the change affects"
       ]
     }
   ]
