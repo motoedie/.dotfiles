@@ -3,11 +3,6 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 export PATH="$HOME/.local/bin:$PATH"
 
-command -v rtk >/dev/null 2>&1 || curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
-[ -f "$HOME/.claude/RTK.md" ] || rtk init -g --auto-patch
-grep -qE 'rtk hook cursor|rtk-rewrite\.sh' "$HOME/.cursor/hooks.json" 2>/dev/null || rtk init -g --agent cursor
-[ -f "${CODEX_HOME:-$HOME/.codex}/RTK.md" ] || rtk init -g --codex
-
 [ -d "$HOME/.claude/plugins/marketplaces/claude-code-mods" ] || claude plugin marketplace add hamzafer/claude-code-mods
 claude plugin marketplace update claude-code-mods
 claude plugin install snake@claude-code-mods
