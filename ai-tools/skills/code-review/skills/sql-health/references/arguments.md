@@ -8,9 +8,10 @@
 - Everything after `Instructions:` is review instructions, passed unchanged to
   every subagent; remove it before parsing scope.
 
-Use database connection variables provided directly in the arguments; otherwise read them from the file paths provided by the user.
+- `source=<id>` selects the DBHub source; remove the token before parsing
+  scope.
 
-Verify and use that connection per `explain.md`.
+Reach the database only through DBHub, per `explain.md`.
 
 ## Scope
 

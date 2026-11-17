@@ -1,0 +1,25 @@
+# DBHub config for the sql-health skill.
+# Copy to ~/.config/dbhub/dbhub.toml, fill in the empty values, and keep the
+# file private. Install steps: README.md, "Connect the database".
+
+[[sources]]
+id = "main"            # Short name. With several sources, tools get a _<id> suffix.
+description = ""       # Optional. Helps you tell sources apart.
+type = "postgres"
+host = ""              # e.g. localhost
+port = 5432
+database = ""
+user = ""
+password = ""
+# sslmode = ""         # Optional: disable | require | verify-ca | verify-full
+
+# Only the tools listed here are enabled for the source.
+
+[[tools]]
+name = "explain_sql"     # Query plans. Never runs the query.
+source = "main"
+
+[[tools]]
+name = "execute_sql"     # SQL. sql-health sends only catalog SELECTs.
+source = "main"
+readonly = false         # true = allow read-only statements only.

@@ -6,12 +6,13 @@ description: Report-only review of SQL queries affected by code changes, using P
 # SQL Health
 
 Report-only review of SQL affected by a change against the actual PostgreSQL
-schema, indexes, and available query plans: propose fixes without editing
-source, changing schema, or executing application statements.
+schema, indexes, and available query plans, read through the DBHub MCP server:
+propose fixes without editing source, changing schema, or executing
+application statements.
 
 ## Flow
 
-1. **Scope.** Resolve output, instructions, connection, and scope from the
+1. **Scope.** Resolve output, instructions, DBHub source, and scope from the
    arguments in the message that invoked this skill, and build the manifest per
    [arguments.md](references/arguments.md).
 2. **Evidence.** Gather each query's schema, index, and plan evidence, or the

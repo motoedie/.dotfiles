@@ -5,7 +5,8 @@
 Before judging a query, inspect its actual relevant tables, columns, PostgreSQL
 types, keys, constraints, and all applicable indexes, including composite
 column order, uniqueness, predicates, expressions, and included columns. Use
-schema sources plus live metadata when project-provided access exists. Reconcile
+schema sources plus live catalog metadata from the DBHub MCP `execute_sql` tool
+when it is connected. Reconcile
 changed migrations with the schema state the reviewed code will run against.
 
 If schema or index evidence is unavailable, continue with what is known and
@@ -14,13 +15,15 @@ available existing indexes.
 
 ## EXPLAIN
 
-Attempt `EXPLAIN (FORMAT JSON)` for every affected query when the project
-environment already provides PostgreSQL access.
+Attempt `EXPLAIN (FORMAT JSON)` for every affected query when the DBHub MCP
+server is connected.
 
 ### Connection
 
-Use an existing PostgreSQL client and the supplied connection. First verify that
-it works and that the relations needed by the affected queries exist. Never
+Use only the DBHub MCP tools; DBHub holds the connection settings. Never read
+its config, environment variables, or other credentials, and never connect
+through another client. First verify that it works and that the relations
+needed by the affected queries exist. Never
 install dependencies, start, initialize, or change the database, run migrations,
 add rows, create snapshot partitions, or print secrets. If a prerequisite is
 missing, continue the static checks while the scope can still be enumerated and
@@ -28,13 +31,14 @@ record the exact plan-unavailable reason.
 
 ### Per-query procedure
 
-1. Use the provided database client and schema state.
+1. Use the DBHub MCP tools and schema state.
 2. Preserve the original SQL and bindings as closely as possible. For
    parameters, use type-correct representative values from non-sensitive test
    fixtures, schema constraints, or documented defaults. Record important
    assumptions.
-3. Send an `EXPLAIN (FORMAT JSON) <statement>` request. Never add `ANALYZE`, run
-   the original application statement, or run a migration to obtain a plan.
+3. Send `(FORMAT JSON) <statement>` to the DBHub `explain_sql` tool, which adds
+   `EXPLAIN` and never executes the statement. Never add `ANALYZE`, run the
+   original application statement, or run a migration to obtain a plan.
 4. Capture the JSON plan with the query ID. Keep credentials and unrelated row
    data out of prompts, logs, artifacts, and reports.
 5. If the ORM/query builder can expose generated SQL safely, use that. If it
