@@ -13,6 +13,9 @@ synthesis subagent also follow their own section.
 
 ## Reviewers
 
+For each change in behavior, find what depends on it, including unchanged
+code, stored data, and other writers, and check that each still works.
+
 Run every selected pass on every file in your group in one review, reusing the
 same source context, and inspect the source and selected change as needed to
 understand or verify behavior. Return findings per `finding-criteria.md` plus

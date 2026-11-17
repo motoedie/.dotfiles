@@ -17,6 +17,9 @@ and index effects within this skill's scope:
 - obviously inefficient migration SQL when the changed query/schema evidence
   demonstrates the problem.
 
+Also check unchanged queries that use a table, column, index, or constraint
+the migration changes.
+
 Report a migration finding only when the changed migration contains or causes
 the problem. Do not expand into transaction, locking, rollout, deployment,
 backfill operations, PostgreSQL tuning, or general migration-safety review.
